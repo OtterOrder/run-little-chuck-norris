@@ -127,11 +127,11 @@ namespace RunLittleChuckNorris.GameObject
             }
 
             // is colliding Obstacle ?
-            /*if (collisionManager.collideObstacle(this) != null)
+            if (collisionManager.CollideObstacle(this) != null)
             {
                 // dead
-                Game.Services.GetService(Helper.IGameOver).GameOver();
-            }*/
+                ((Helper.IGameOver)Game.Services.GetService(typeof(Helper.IGameOver))).GameOver();
+            }
             
 
             // apply change on player position
