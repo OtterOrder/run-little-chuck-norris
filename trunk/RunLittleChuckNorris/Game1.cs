@@ -24,7 +24,6 @@ namespace RunLittleChuckNorris
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         LevelManager _levelManager;
-        CollisionManager _collisionManager;
 
         public const int _mBackBufferWidth = 1280;
         public const int _mBackBufferHeight = 720;
@@ -45,7 +44,6 @@ namespace RunLittleChuckNorris
             _mObstacles = new List<GameObject.Obstacle>();
 
             _levelManager = new GameComponents.LevelManager(this);
-            _collisionManager = new CollisionManager(this);
             Components.Add(_levelManager);
         }
 
@@ -96,7 +94,6 @@ namespace RunLittleChuckNorris
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            _collisionManager.UpdateListObstacle();
 
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
