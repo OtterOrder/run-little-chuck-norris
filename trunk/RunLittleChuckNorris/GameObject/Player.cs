@@ -128,7 +128,7 @@ namespace RunLittleChuckNorris.GameObject
             }
 
             // is colliding Obstacle ?
-            if (collisionManager.CollideObstacle(this) != null)
+            if (collisionManager.CollideObstacle(this) != null || Y > 800)
             {
                 // dead
                 ((Helper.IGameOver)Game.Services.GetService(typeof(Helper.IGameOver))).GameOver();
