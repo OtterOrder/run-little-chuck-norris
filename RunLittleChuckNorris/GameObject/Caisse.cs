@@ -19,6 +19,7 @@ namespace RunLittleChuckNorris.GameObject
     /// </summary>
     public class Caisse : GameObject
     {
+    
         public Caisse(Game game)
             : base(game)
         {
@@ -41,14 +42,6 @@ namespace RunLittleChuckNorris.GameObject
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-        }
-
-        public override void Draw(GameTime gameTime)
-        {
-            base.Draw(gameTime);
-
-            // ask the sprite to be drawed based on camera properties
-
         }
 
         #region Public Methods

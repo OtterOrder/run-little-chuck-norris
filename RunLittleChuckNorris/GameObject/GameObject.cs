@@ -48,7 +48,20 @@ namespace RunLittleChuckNorris.GameObject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            if (Sprite != null)
+            {
+                Sprite.Update((float)gameTime.ElapsedGameTime.TotalMilliseconds);
+            }
+
             base.Update(gameTime);
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+
+            // ask the sprite to be drawed based on camera properties
+            Sprite.Draw();
         }
 
         #region Properties
