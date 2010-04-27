@@ -30,7 +30,7 @@ namespace RunLittleChuckNorris.GameObject
             Sprite.Loop = false;
             Sprite.Play = false;
             Sprite.Origin = new Vector2(Sprite.Width/2, Sprite.Height);
-            m_fireRate = 750.0f;
+            m_fireRate = 1200.0f;
             m_timeSinceLastShot = 0.0f;
 
             m_worldProvider = (Helper.IWorldProvider)game.Services.GetService(typeof(Helper.IWorldProvider));
