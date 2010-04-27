@@ -41,6 +41,10 @@ namespace RunLittleChuckNorris.GameObject
                 Sprite.Play = true;
                 Sprite.Restart();
                 m_timeSinceLastShot = 0.0f;
+
+                Bullet b = new Bullet(Game);
+                b.X = this.X;
+                b.Y = this.Y ;
             }
             base.Update(gameTime);
         }
