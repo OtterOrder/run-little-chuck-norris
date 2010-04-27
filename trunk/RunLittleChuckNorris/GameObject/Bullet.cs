@@ -17,19 +17,22 @@ namespace RunLittleChuckNorris.GameObject
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Bullet : GameObject
+    public class Bullet : Obstacle
     {
         private float _mFireSpeed;
+        private Helper.IWorldProvider _mWorldProvider;
 
         public Bullet(Game game)
             : base(game)
         {
-            Sprite = new Helper.Sprite("Graphics/Sprites/Bullet", Game.Content, 2, 4);
+            Sprite = new Helper.Sprite("Graphics/Sprites/Bullet", Game.Content);
             Sprite.Loop = false;
-            Sprite.Play = false;
             Sprite.Origin = new Vector2(Sprite.Width / 2, Sprite.Height);
 
             _mFireSpeed = -5.0f;
+
+            _mWorldProvider = (Helper.IWorldProvider)game.Services.GetService(typeof(Helper.IWorldProvider));
+
         }
 
         /// <summary>
@@ -49,6 +52,9 @@ namespace RunLittleChuckNorris.GameObject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            if (_mWorldProvider.IsFreezed)
+                return;
+
             X += _mFireSpeed;
 
             base.Update(gameTime);

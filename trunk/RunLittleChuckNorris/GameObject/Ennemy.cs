@@ -21,6 +21,7 @@ namespace RunLittleChuckNorris.GameObject
     {
         private float m_fireRate;
         private float m_timeSinceLastShot;
+        private Helper.IWorldProvider m_worldProvider;
 
         public Ennemy(Game game)
             : base(game)
@@ -31,10 +32,16 @@ namespace RunLittleChuckNorris.GameObject
             Sprite.Origin = new Vector2(Sprite.Width/2, Sprite.Height);
             m_fireRate = 750.0f;
             m_timeSinceLastShot = 0.0f;
+
+            m_worldProvider = (Helper.IWorldProvider)game.Services.GetService(typeof(Helper.IWorldProvider));
+
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (m_worldProvider.IsFreezed)
+                return;
+
             m_timeSinceLastShot += gameTime.ElapsedGameTime.Milliseconds;
             if(m_timeSinceLastShot >= m_fireRate)
             {
