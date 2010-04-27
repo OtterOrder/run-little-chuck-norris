@@ -28,6 +28,7 @@ namespace RunLittleChuckNorris.GameComponents
 
         static private Camera _mDefaultCam;
         private Player _mPlayer;
+        private IWorldProvider _mworldProvider;
 
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
@@ -37,6 +38,7 @@ namespace RunLittleChuckNorris.GameComponents
         {
             _mDefaultCam = new Camera();
             _mPlayer = new GameObject.Player(Game, "Player");
+            _mworldProvider = (IWorldProvider) Game.Services.GetService(typeof(IWorldProvider));
 
             CreateInitLevel();
 
@@ -68,11 +70,19 @@ namespace RunLittleChuckNorris.GameComponents
                 {
                     (g as GameObject.Player).Init();
                 }
-                else if ( g is GameObject.Obstacle ||
-                          g is GameObject.Plateforme)
+                else if (g is GameObject.Obstacle)
                 {
                     // remove it
-                    toBeRemoved.Add(g); 
+                    toBeRemoved.Add(g);
+
+                    _mworldProvider.Obstacles.Remove(g as GameObject.Obstacle);
+                }
+                else if (g is GameObject.Plateforme)
+                {
+                    // remove it
+                    toBeRemoved.Add(g);
+
+                    _mworldProvider.Plateformes.Remove(g as GameObject.Plateforme);
                 }
             }
 
