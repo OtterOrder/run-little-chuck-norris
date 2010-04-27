@@ -117,23 +117,26 @@ namespace RunLittleChuckNorris.GameComponents
             int maxWidth = 1000;
             GameObject.GameObject obj;
 
-            int nbdiv = rand.Next(3, 6);
+            int nbdiv = rand.Next(3, 5);
+            int hauteur = rand.Next(200, 400);
 
             for (int i = 0; i < nbdiv; i++)
             {
                 GameObject.Plateforme p = new GameObject.Plateforme(Game);
                 p.X = startX;
 
-                int hauteur = rand.Next(200, 400);
+                int offset = rand.Next(100, 200);
+                int sense = rand.Next(-1, 1);
+                if (sense == 0) sense = 1;
+                hauteur = hauteur + offset * sense;
                 p.Y = hauteur;
 
-                int longueur = maxWidth / nbdiv;
+                int longueur = rand.Next(100, 400);
                 p.Width = longueur;
 
                 p.Height = 50.0f;
 
-                startX += (longueur + rand.Next(20, 40));
-
+                startX += (longueur + rand.Next(100, 200));
             }
 
         }
