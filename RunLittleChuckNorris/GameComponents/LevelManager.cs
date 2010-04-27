@@ -32,8 +32,9 @@ namespace RunLittleChuckNorris.GameComponents
         private IWorldProvider _mworldProvider;
         private float _mPlayerOffset;
 
-        private int _mRefreshDist = 1300;
+        private int _mRefreshDist = 1280;
         private int probCaisse = 90;
+        private int probEnnemy = 90;
         Random rand = new Random(DateTime.Now.Millisecond); 
 
         /// <summary>
@@ -63,10 +64,11 @@ namespace RunLittleChuckNorris.GameComponents
 
             _mDefaultCam.mFocus = new Vector2(_mPlayer.X + _mPlayerOffset, _mPlayer.Y);
             _mDefaultCam.Update(Dt);
+            int lasthauteur = 450;
 
-            if (_mDefaultCam.MaxX % _mRefreshDist == 0)
+            if (_mDefaultCam.MaxX % _mRefreshDist == 0 && _mDefaultCam.MaxX > 2560)
             {
-                CreateNextPiece((int)_mDefaultCam.MaxX);
+                lasthauteur = CreateNextPiece((int)_mDefaultCam.MaxX, lasthauteur);
             }
 
             base.Update(gameTime);
@@ -113,15 +115,18 @@ namespace RunLittleChuckNorris.GameComponents
             obj = new GameObject.Caisse(Game);
             obj.X = 800;
             obj.Y = 500;
+
+            CreateNextPiece(2560, 500);
         }
 
-        private void CreateNextPiece(int startX)
+        private int CreateNextPiece(int startX, int startY)
         {
-            int maxLongCaisse = 250;
+            int maxLongCaisse = 200;
+            int maxLongEnnemy = 300;
             GameObject.GameObject obj;
 
             int nbdiv = rand.Next(3, 5);
-            int hauteur = rand.Next(200, 400);
+            int hauteur = startY;
 
             int longmoy = 1000 / nbdiv;
 
@@ -131,7 +136,7 @@ namespace RunLittleChuckNorris.GameComponents
                 GameObject.Plateforme p = new GameObject.Plateforme(Game);
                 p.X = startX;
 
-                int offset = rand.Next(50, 100);
+                int offset = rand.Next(20, 60);
                 int sense = rand.Next(-1, 1);
                 if (sense == 0) sense = 1;
                 hauteur = hauteur + offset * sense;
@@ -151,15 +156,31 @@ namespace RunLittleChuckNorris.GameComponents
                     obj = new GameObject.Caisse(Game);
                     int place = rand.Next(0, 2);
                     if(place == 0)
-                        obj.X = startX + (longueur - 20);
+                        obj.X = startX + (longueur - 30);
+                    else
+                        obj.X = startX + (longueur / 5);
+                    obj.Y = hauteur;
+                }
+
+                // Apparition ennemis
+                if (longueur > maxLongEnnemy && probEnnemy >= 100)
+                {
+                    probEnnemy = 0;
+                    obj = new GameObject.Ennemy(Game);
+                    int place = rand.Next(0, 2);
+                    if (place == 0)
+                        obj.X = startX + (longueur - 30);
                     else
                         obj.X = startX + (longueur / 5);
                     obj.Y = hauteur;
                 }
 
                 startX += (longueur + rand.Next(50, 100));
-                probCaisse += rand.Next(5, 10);
+                probCaisse += rand.Next(5, 30);
+                probEnnemy += rand.Next(5, 20);
             }
+
+            return hauteur;
 
         }
 
