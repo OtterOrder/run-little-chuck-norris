@@ -21,6 +21,9 @@ namespace RunLittleChuckNorris.GameObject
     {
         private float m_speed;
         private Helper.CollisionManager collisionManager;
+        private float currentJumpHeight;
+        private float minJumpHeight;
+        private float maxJumpHeight;
         private bool isJumping;
 
         public Player(Game game, String spriteName)
@@ -30,18 +33,22 @@ namespace RunLittleChuckNorris.GameObject
             this.Sprite = new Helper.Sprite("Graphics/Sprites/"+spriteName, this.Game.Content, 4, 4);
             this.Sprite.Loop = true;
             Sprite.Origin = new Vector2(Sprite.Width / 2, Sprite.Height);
-            m_speed = 5.0f;
+            m_speed = 0.0f;
             X = 20.0f;
-            Y = 500.0f;
+            Y = 0.0f;
             isJumping = false;
+            currentJumpHeight = 0.0f;
+            minJumpHeight = 150.0f;
+            maxJumpHeight = 300.0f;
         }
 
         public void Init()
         {
             m_speed = 5.0f;
             X = 20.0f;
-            Y = 500.0f;
+            Y = 490.0f;
             isJumping = false;
+            currentJumpHeight = 0.0f;
         }
 
         public override void Update(GameTime gameTime)
@@ -50,10 +57,42 @@ namespace RunLittleChuckNorris.GameObject
 
             float speedx = m_speed;
             float speedy = 0;
+
+
+            // is jumping ?
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))// && currentJumpHeight < maxJumpHeight)
+            {
+                // modify speedy
+               // currentJumpHeight += speedy;
+                isJumping = true;
+                currentJumpHeight = 0;
+            }
+
+            if (isJumping && currentJumpHeight < minJumpHeight)
+            {
+                currentJumpHeight += 15;
+            }
+
+            if (currentJumpHeight >= maxJumpHeight || currentJumpHeight >= minJumpHeight && !Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                isJumping = false;
+                currentJumpHeight = 0;
+            }
+
             Plateforme p;
             // is colliding Plateforme
             p = (Plateforme)collisionManager.CollidePlatform(this);
-          
+
+            if (!isJumping)
+            {
+                speedy = 15.0f;
+            }
+            else
+            {
+                speedy = -15.0f;
+            }
+
             if (p != null)
             {
                 // under ?
@@ -73,28 +112,32 @@ namespace RunLittleChuckNorris.GameObject
                     }
                     else
                     {
-                        if(X >= p.X && Y <= p.Y)
+                        if (X >= p.X && Y <= p.Y)
                         {
-                            speedy = 0;
+                            speedy = 0.0f;
+                            //currentJumpHeight = 0.0f;
+                            isJumping = false;
                         }
                     }
                 }
 
             }
+
             // is colliding Obstacle ?
             /*if (collisionManager.collideObstacle(this) != null)
             {
                 // dead
                 Game.Services.GetService(Helper.IGameOver).GameOver();
             }*/
-
-            // is jumping ?
-                // modify speedy
             
 
             // apply change on player position
             X += speedx;
             Y += speedy;
+            if (Y > 500)
+            {
+               // Y = 500;
+            }
         }
 
         #region Properties
