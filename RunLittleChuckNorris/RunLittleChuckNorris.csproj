@@ -96,6 +96,7 @@
     <Compile Include="Helper\Camera.cs" />
     <Compile Include="Helper\CollisionManager.cs" />
     <Compile Include="Helper\Sprite.cs" />
+    <Compile Include="Helper\Text.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
@@ -146,6 +147,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
