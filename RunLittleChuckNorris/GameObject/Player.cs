@@ -41,7 +41,7 @@ namespace RunLittleChuckNorris.GameObject
             : base(game)
         {
             collisionManager = new Helper.CollisionManager(game);
-            this.Sprite = new Helper.Sprite("Graphics/Sprites/"+spriteName, this.Game.Content, 4, 4);
+            this.Sprite = new Helper.Sprite("Graphics/Sprites/"+spriteName, this.Game.Content, 4, 10.0f);
             this.Sprite.Loop = true;
             Sprite.Origin = new Vector2(Sprite.Width / 2, Sprite.Height);
             m_speed = 0.0f;
