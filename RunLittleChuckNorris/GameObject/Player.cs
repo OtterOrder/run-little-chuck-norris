@@ -46,7 +46,7 @@ namespace RunLittleChuckNorris.GameObject
         {
             m_speed = 5.0f;
             X = 20.0f;
-            Y = 490.0f;
+            Y = 100.0f;
             isJumping = false;
             currentJumpHeight = 0.0f;
         }
@@ -82,6 +82,7 @@ namespace RunLittleChuckNorris.GameObject
 
             Plateforme p;
             // is colliding Plateforme
+
             p = (Plateforme)collisionManager.CollidePlatform(this);
 
             if (!isJumping)
