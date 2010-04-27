@@ -61,6 +61,15 @@ namespace RunLittleChuckNorris.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à 0,5.
+        /// </summary>
+        internal static string BG_SPEED {
+            get {
+                return ResourceManager.GetString("BG_SPEED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à 0.
         /// </summary>
         internal static string GAMEOBJECT_DRAW_PRIORITY {

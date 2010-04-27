@@ -24,6 +24,7 @@ namespace RunLittleChuckNorris
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         LevelManager _levelManager;
+        Background _mBG;
 
         public const int _mBackBufferWidth = 1280;
         public const int _mBackBufferHeight = 720;
@@ -63,6 +64,12 @@ namespace RunLittleChuckNorris
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Sprite.SprBatch = spriteBatch;
             Text.SprBatch = spriteBatch;
+            Background.SprBatch = spriteBatch;
+            Background.BackBufferWidth = graphics.PreferredBackBufferWidth;
+            Background.BackBufferHeight = graphics.PreferredBackBufferHeight;
+
+            _mBG = new Background("Graphics/Backgrounds/Sky", Content);
+            _mBG.Speed = new Vector2(0.0f, 0.0f);
 
             Services.AddService(typeof(IGameOver), this);
             Services.AddService(typeof(IWorldProvider), this);
@@ -170,8 +177,11 @@ namespace RunLittleChuckNorris
             {
                 _mIsGamePaused = false;
                 _mHUD.State = HUD.HUDState.Playing;
+
+                _mBG.Speed = new Vector2(float.Parse(Properties.Resources.BG_SPEED), 0.0f);
             }
 
+            _mBG.Update((float)gameTime.ElapsedGameTime.TotalMilliseconds);
 
             base.Update(gameTime);
 
@@ -190,9 +200,28 @@ namespace RunLittleChuckNorris
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            GraphicsDevice.SamplerStates[0].MinFilter = TextureFilter.Linear;
+            GraphicsDevice.SamplerStates[0].MagFilter = TextureFilter.Linear;
+
+
+            // Backgrounds
+            spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None);
+
+            GraphicsDevice.SamplerStates[0].AddressU = TextureAddressMode.Wrap;
+            GraphicsDevice.SamplerStates[0].AddressV = TextureAddressMode.Wrap;
+
+            _mBG.Draw();
+
+            spriteBatch.End();
+
+            // Sprites
             LevelManager.GetCurrentCam().SetCamera(graphics);
 
             spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, LevelManager.GetCurrentCam().mTransform);
+
+
+            GraphicsDevice.SamplerStates[0].AddressU = TextureAddressMode.Clamp;
+            GraphicsDevice.SamplerStates[0].AddressV = TextureAddressMode.Clamp;
 
             base.Draw(gameTime);
 
@@ -214,6 +243,7 @@ namespace RunLittleChuckNorris
 
             // display the HUD
             _mHUD.State = HUD.HUDState.GameOver;
+            _mBG.Speed = new Vector2(0.0f, 0.0f);
 
             _levelManager.CreateInitLevel();
 
