@@ -37,8 +37,8 @@ namespace RunLittleChuckNorris
         protected override void Initialize()
         {
             // set the spritebatch to the sprite
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             Sprite.SprBatch = spriteBatch;
-            
 
             base.Initialize();
         }
@@ -50,8 +50,6 @@ namespace RunLittleChuckNorris
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            Sprite.SprBatch = spriteBatch;
         }
 
         /// <summary>
