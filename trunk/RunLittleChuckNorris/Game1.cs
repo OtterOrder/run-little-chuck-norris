@@ -67,10 +67,44 @@ namespace RunLittleChuckNorris
             Services.AddService(typeof(IGameOver), this);
             Services.AddService(typeof(IWorldProvider), this);
 
-            base.Initialize();
+            // HUD
+            HUDStateParams[] ParamsArray = new HUDStateParams[HUD.NbStates];
+            for (int i = 0; i < HUD.NbStates; i++)
+            {
+                ParamsArray[i] = new HUDStateParams();
+            }
 
-            _mHUD = new HUD(this, LevelManager.GetCurrentCam());
-            _mHUD.Position = new Vector2(-graphics.PreferredBackBufferWidth / 2.0f + 250.0f, -graphics.PreferredBackBufferHeight / 2.0f);
+            TextParams TxtParams;
+
+                // Score
+            TxtParams = new TextParams();
+            TxtParams.FontName = "Fonts/HUDFont";
+            TxtParams.TextValue = "Score : /Score";
+            TxtParams.Color = Color.Green;
+            TxtParams.Mode = Text.TextMode.AlignedLeft;
+            TxtParams.Position = new Vector2(-graphics.PreferredBackBufferWidth / 2.0f + 250.0f, -graphics.PreferredBackBufferHeight / 2.0f);
+            ParamsArray[(int)HUD.HUDState.Playing].ParamsList.Add(TxtParams);
+
+                // Game Over
+            TxtParams = new TextParams();
+            TxtParams.FontName = "Fonts/HUDFontGameOver";
+            TxtParams.TextValue = "Game Over";
+            TxtParams.Color = Color.Red;
+            TxtParams.Mode = Text.TextMode.Center;
+            TxtParams.Position = new Vector2(0.0f, 20.0f);
+            ParamsArray[(int)HUD.HUDState.GameOver].ParamsList.Add(TxtParams);
+
+            TxtParams = new TextParams();
+            TxtParams.FontName = "Fonts/HUDFontGameOver";
+            TxtParams.TextValue = "Score : /Score";
+            TxtParams.Color = Color.Red;
+            TxtParams.Mode = Text.TextMode.Center;
+            TxtParams.Position = new Vector2(0.0f, 80.0f);
+            ParamsArray[(int)HUD.HUDState.GameOver].ParamsList.Add(TxtParams);
+
+            _mHUD = new HUD(this, ParamsArray);
+
+            base.Initialize();
         }
 
         /// <summary>
