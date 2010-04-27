@@ -17,7 +17,7 @@ namespace RunLittleChuckNorris.GameObject
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Plateforme : Obstacle
+    public class Plateforme : GameObject
     {
         #region Private members
 

@@ -50,7 +50,7 @@ namespace RunLittleChuckNorris.Helper
             _mViewport.Height = (int)(_Height * _mBackBufferHeight);
             _mViewport.X = (int)(_PosX * _mBackBufferWidth);
             _mViewport.Y = (int)(_PosY * _mBackBufferHeight);
-            _mScreenCenter = new Vector2(_mViewport.Width / 3, _mViewport.Height / 2);
+            _mScreenCenter = new Vector2(_mViewport.Width / 2, _mViewport.Height / 2);
         }
 
         public void Update(float _Dt)

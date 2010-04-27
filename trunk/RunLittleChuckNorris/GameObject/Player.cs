@@ -52,7 +52,7 @@ namespace RunLittleChuckNorris.GameObject
             float speedy = 0;
             Plateforme p;
             // is colliding Plateforme
-            p = (Plateforme)collisionManager.Collide(this);
+            p = (Plateforme)collisionManager.CollidePlatform(this);
           
             if (p != null)
             {

@@ -27,23 +27,41 @@ namespace RunLittleChuckNorris.Helper
             _mPlatformList = _wordlProvider.Plateformes;
         }
 
-        public GameObject.GameObject Collide(GameObject.GameObject obj)
+        public GameObject.Plateforme CollidePlatform(GameObject.GameObject obj)
         {
             // Rectangle du l'objet dont on veut savoir la collision
             Rectangle baseRectangle = new Rectangle((int)obj.X, (int)obj.Y, obj.Sprite.Width, obj.Sprite.Width);
 
-            foreach (Obstacle obs in _mPlatformList)
+            foreach (Plateforme obs in _mPlatformList)
             {
                 Rectangle blockRectangle = new Rectangle((int)obs.X, (int)obs.Y, obs.Sprite.Width, obs.Sprite.Height);
 
                  // Verifie la collision
                 if (baseRectangle.Intersects(blockRectangle))
                 {
-                    GameObject.GameObject collisionObj = (GameObject.GameObject)obs;
+                    GameObject.Plateforme collisionObj = (GameObject.Plateforme)obs;
                     return collisionObj;
                 }
             }
+            return null;
+        }
 
+        public GameObject.Obstacle CollideEnnemy(GameObject.GameObject obj)
+        {
+            // Rectangle du l'objet dont on veut savoir la collision
+            Rectangle baseRectangle = new Rectangle((int)obj.X, (int)obj.Y, obj.Sprite.Width, obj.Sprite.Width);
+
+            foreach (Obstacle obs in _mObstacleList)
+            {
+                Rectangle blockRectangle = new Rectangle((int)obs.X, (int)obs.Y, obs.Sprite.Width, obs.Sprite.Height);
+
+                // Verifie la collision
+                if (baseRectangle.Intersects(blockRectangle))
+                {
+                    GameObject.Obstacle collisionObj = (GameObject.Obstacle)obs;
+                    return collisionObj;
+                }
+            }
             return null;
         }
     }
