@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BG_SPEED" xml:space="preserve">
-    <value>0,5</value>
+    <value>0,3</value>
   </data>
   <data name="GAMEOBJECT_DRAW_PRIORITY" xml:space="preserve">
     <value>0</value>
