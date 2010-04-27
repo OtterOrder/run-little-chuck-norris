@@ -98,7 +98,7 @@ namespace RunLittleChuckNorris
             TxtParams.TextValue = "Score : /Score";
             TxtParams.Color = Color.Green;
             TxtParams.Mode = Text.TextMode.AlignedLeft;
-            TxtParams.Position = new Vector2(-graphics.PreferredBackBufferWidth / 2.0f + 250.0f, -graphics.PreferredBackBufferHeight / 2.0f);
+            TxtParams.Position = new Vector2(-graphics.PreferredBackBufferWidth / 2.0f + 1000, -graphics.PreferredBackBufferHeight / 2.0f);
             ParamsArray[(int)HUD.HUDState.Playing].ParamsList.Add(TxtParams);
 
                 // Game Over

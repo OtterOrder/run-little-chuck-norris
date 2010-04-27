@@ -52,7 +52,7 @@ namespace RunLittleChuckNorris.GameObject
             minJumpHeight = 150.0f;
             maxJumpHeight = 300.0f;
             m_bestDistance = 0;
-            speedyMax = 30.0f;
+            speedyMax = 25.0f;
             Sprite.Play = false;
 
             m_worldProvider = (Helper.IWorldProvider)game.Services.GetService(typeof(Helper.IWorldProvider));
