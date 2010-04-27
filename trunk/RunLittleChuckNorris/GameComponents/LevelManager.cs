@@ -91,16 +91,16 @@ namespace RunLittleChuckNorris.GameComponents
 
             GameObject.GameObject obj;
             GameObject.Plateforme p = new GameObject.Plateforme(Game);
-            p.X = 50;
+            p.X = 0;
             p.Y = 500;
             p.Width = 10000.0f;
             p.Height = 10.0f;
 
             obj = new GameObject.Ennemy(Game);
-            obj.X = 500;
+            obj.X = 1500;
             obj.Y = 500;
             obj = new GameObject.Caisse(Game);
-            obj.X = 150;
+            obj.X = 800;
             obj.Y = 500;
         }
 
