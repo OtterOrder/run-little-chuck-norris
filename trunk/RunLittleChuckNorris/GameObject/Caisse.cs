@@ -22,7 +22,7 @@ namespace RunLittleChuckNorris.GameObject
         public Caisse(Game game)
             : base(game)
         {
-            
+            this.Sprite = new Helper.Sprite("Graphics/Sprites/Obstacle", Game.Content);
         }
 
         /// <summary>
@@ -42,5 +42,23 @@ namespace RunLittleChuckNorris.GameObject
         {
             base.Update(gameTime);
         }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+
+            // ask the sprite to be drawed based on camera properties
+
+        }
+
+        #region Public Methods
+
+        public void SetCaissePosition(float x, float y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
+
+        #endregion
     }
 }
