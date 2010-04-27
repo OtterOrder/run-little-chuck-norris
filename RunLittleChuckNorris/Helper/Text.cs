@@ -18,13 +18,13 @@ namespace RunLittleChuckNorris.Helper
 
         public Vector2 Position = new Vector2();
         public Vector2 Scale = new Vector2(1.0f, 1.0f);
-        public string TextString = "";
+        public string TextValue = "";
         public Color Color = Color.White;
 
         private SpriteFont _mFont = null;
 
         private Vector2 _mOrigin = new Vector2();
-        public TextMode mMode = TextMode.AlignedLeft;
+        public TextMode Mode = TextMode.AlignedLeft;
 
         //------------------------------------------------------------------
         public Text(string _FileName, ContentManager _ContentManager)
@@ -35,24 +35,24 @@ namespace RunLittleChuckNorris.Helper
         //------------------------------------------------------------------
         public int Length
         {
-            get { return TextString.Length; }
+            get { return TextValue.Length; }
         }
 
         //------------------------------------------------------------------
         public void Update()
         {
-            switch (mMode)
+            switch (Mode)
             {
                 case TextMode.AlignedLeft:
                     _mOrigin = new Vector2(0.0f, 0.0f);
                     break;
 
                 case TextMode.AlignedRight:
-                    _mOrigin.X = _mFont.MeasureString(TextString).X;
+                    _mOrigin.X = _mFont.MeasureString(TextValue).X;
                     break;
 
                 case TextMode.Center:
-                    _mOrigin.X = _mFont.MeasureString(TextString).X / 2.0f;
+                    _mOrigin.X = _mFont.MeasureString(TextValue).X / 2.0f;
                     break;
             }
         }
@@ -60,7 +60,7 @@ namespace RunLittleChuckNorris.Helper
         //------------------------------------------------------------------
         public void Draw()
         {
-            SprBatch.DrawString(_mFont, TextString, Position, Color, 0, _mOrigin, Scale, SpriteEffects.None, 0.5f);
+            SprBatch.DrawString(_mFont, TextValue, Position, Color, 0, _mOrigin, Scale, SpriteEffects.None, 0.5f);
         }
     }
 }

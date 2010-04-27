@@ -18,18 +18,65 @@ namespace RunLittleChuckNorris.GameComponents
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
+
+    public class TextParams
+    {
+        public string FontName = "";
+        public string TextValue = "";
+        public Color Color = Color.White;
+        public Text.TextMode Mode = Text.TextMode.AlignedLeft;
+        public Vector2 Position = new Vector2();
+    }
+
+    public class HUDStateParams
+    {
+        public List<TextParams> ParamsList = new List<TextParams> ();
+    }
+
+    public class HUDStateVars
+    {
+        public List<string> TextValues = new List<string>();
+        public List<Vector2> Positions = new List<Vector2>();
+        public List<Text> Texts = new List<Text> ();
+
+        public HUDStateVars(HUDStateParams _Params, ContentManager _ContentManager)
+        {
+            foreach (TextParams Params in _Params.ParamsList)
+            {
+                TextValues.Add(Params.TextValue);
+                Positions.Add(Params.Position);
+
+                Text lText = new Text(Params.FontName, _ContentManager);
+                lText.TextValue = Params.TextValue;
+                lText.Color = Params.Color;
+                lText.Mode = Params.Mode;
+                Texts.Add(lText);
+            }
+        }
+    }
+
     public class HUD : Microsoft.Xna.Framework.DrawableGameComponent
     {
-        public Vector2 Position = new Vector2(0.0f, 0.0f);
+        public static int NbStates = 2;
+        public enum HUDState
+        {
+            Playing = 0,
+            GameOver = 1
+        }
+
+        private HUDStateVars[] _mHUDStateVars = new HUDStateVars [NbStates];
+        private HUDStateVars _mCurrentHUDState = null;
+
         private Camera _mCamera = null;
         private float _mScore = 0.0f;
-        private Text _mText = null;
 
-        public HUD(Game game, Camera _Camera)
+        private HUDState _mState = HUDState.Playing;
+
+        public HUD(Game game, HUDStateParams[] _ParamsArray)
             : base(game)
         {
-            _mCamera = _Camera;
-            _mText = new Text("Fonts/HUDFont", game.Content);
+            for (int i = 0; i < NbStates; i++)
+                _mHUDStateVars[i] = new HUDStateVars(_ParamsArray[i], game.Content);
 
             game.Components.Add(this);
         }
@@ -40,7 +87,11 @@ namespace RunLittleChuckNorris.GameComponents
         /// </summary>
         public override void Initialize()
         {
+            _mCamera = LevelManager.GetCurrentCam();
+
             _mScore = 0.0f;
+            _mState = HUDState.GameOver;
+            ChangeState(HUDState.Playing);
             base.Initialize();
         }
 
@@ -48,6 +99,21 @@ namespace RunLittleChuckNorris.GameComponents
         {
             get { return _mScore; }
             set { _mScore = Math.Max(value, 0.0f); }
+        }
+
+        public HUDState State
+        {
+            get { return _mState; }
+            set { ChangeState(value); }
+        }
+
+        private void ChangeState(HUDState _State)
+        {
+            if (_State == _mState)
+                return;
+
+            _mState = _State;
+            _mCurrentHUDState = _mHUDStateVars[(int)_mState];
         }
 
         /// <summary>
@@ -58,16 +124,22 @@ namespace RunLittleChuckNorris.GameComponents
         {
             base.Update(gameTime);
 
-            _mText.Position = _mCamera.Position + Position;
-            _mText.TextString = "Score = " + _mScore.ToString();
-            _mText.Update();
+            for (int i = 0; i < _mCurrentHUDState.Texts.Count; i++)
+            {
+                _mCurrentHUDState.Texts[i].Position = _mCamera.Position + _mHUDStateVars[(int)_mState].Positions[i];
+                _mCurrentHUDState.Texts[i].TextValue = _mHUDStateVars[(int)_mState].TextValues[i].Replace("/Score", _mScore.ToString());
+                _mCurrentHUDState.Texts[i].Update();
+            }
         }
 
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
 
-            _mText.Draw(); 
+            for (int i = 0; i < _mHUDStateVars[(int)_mState].Texts.Count; i++)
+            {
+                _mCurrentHUDState.Texts[i].Draw();
+            }
         }
     }
 }
