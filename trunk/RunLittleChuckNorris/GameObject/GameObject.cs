@@ -19,10 +19,19 @@ namespace RunLittleChuckNorris.GameObject
     /// </summary>
     public class GameObject : Microsoft.Xna.Framework.DrawableGameComponent
     {
+
+        // Private members
+        Helper.Sprite m_sprite;
+        int m_x;
+        int m_y;
+
+
         public GameObject(Game game)
             : base(game)
         {
-            // TODO: Construct any child components here
+            m_sprite = new Helper.Sprite();
+            m_x = 0;
+            m_y = 0;
         }
 
         /// <summary>
@@ -31,8 +40,6 @@ namespace RunLittleChuckNorris.GameObject
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
-
             base.Initialize();
         }
 
@@ -42,9 +49,28 @@ namespace RunLittleChuckNorris.GameObject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
-
             base.Update(gameTime);
         }
+
+        #region Properties
+
+        int X
+        {
+            get { return m_x; }
+            set { m_x = value; }
+        }
+
+        int Y
+        {
+            get { return m_y; }
+            set { m_y = value; }
+        }
+
+        Helper.Sprite Sprite
+        {
+            get { return m_sprite; }
+        }
+
+        #endregion
     }
 }
