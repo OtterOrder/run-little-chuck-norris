@@ -35,6 +35,7 @@ namespace RunLittleChuckNorris
             graphics.PreferredBackBufferWidth = _mBackBufferWidth;
             graphics.PreferredBackBufferHeight = _mBackBufferHeight;
             Content.RootDirectory = "Content";
+            Components.Add(new GameComponents.LevelManager(this));
         }
 
         /// <summary>
@@ -103,9 +104,9 @@ namespace RunLittleChuckNorris
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _mDefaultCam.SetCamera(graphics);
+            //_mDefaultCam.SetCamera(graphics);
 
-            spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, _mDefaultCam.mTransform);
+            spriteBatch.Begin();//SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, _mDefaultCam.mTransform);
 
             base.Draw(gameTime);
 
