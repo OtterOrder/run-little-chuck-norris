@@ -19,7 +19,7 @@ namespace RunLittleChuckNorris
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class Game1 : Microsoft.Xna.Framework.Game, Helper.IGameOver
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -60,7 +60,9 @@ namespace RunLittleChuckNorris
             _mPlayer = new Player(this, "Player");
 
             _mHUD = new HUD(this, _mDefaultCam);
-            _mHUD.Position = new Vector2(-graphics.PreferredBackBufferWidth / 2.0f, -graphics.PreferredBackBufferHeight / 2.0f);
+            _mHUD.Position = new Vector2(-100, 0);
+
+            Services.AddService(typeof(IGameOver), this);
 
             base.Initialize();
         }
@@ -115,5 +117,12 @@ namespace RunLittleChuckNorris
 
             spriteBatch.End();
         }
+
+        #region IGameOver
+        public void GameOver()
+        {
+            // bla bla
+        }
+        #endregion
     }
 }
