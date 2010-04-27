@@ -101,8 +101,8 @@ namespace RunLittleChuckNorris.GameComponents
             GameObject.Plateforme p = new GameObject.Plateforme(Game);
             p.X = 0;
             p.Y = 500;
-            p.Width = 10000.0f;
-            p.Height = 10.0f;
+            p.Width = 2000.0f;
+            p.Height = 50.0f;
 
             obj = new GameObject.Ennemy(Game);
             obj.X = 1500;
@@ -114,15 +114,27 @@ namespace RunLittleChuckNorris.GameComponents
 
         private void CreateNextPiece(int startX)
         {
-            int hauteur = rand.Next(200, 400);
-            int taille = rand.Next(100, 200);
-
+            int maxWidth = 1000;
             GameObject.GameObject obj;
-            GameObject.Plateforme p = new GameObject.Plateforme(Game);
-            p.X = startX;
-            p.Y = hauteur;
-            p.Width = taille;
-            p.Height = 10.0f;
+
+            int nbdiv = rand.Next(3, 6);
+
+            for (int i = 0; i < nbdiv; i++)
+            {
+                GameObject.Plateforme p = new GameObject.Plateforme(Game);
+                p.X = startX;
+
+                int hauteur = rand.Next(200, 400);
+                p.Y = hauteur;
+
+                int longueur = maxWidth / nbdiv;
+                p.Width = longueur;
+
+                p.Height = 50.0f;
+
+                startX += (longueur + rand.Next(20, 40));
+
+            }
 
         }
 
