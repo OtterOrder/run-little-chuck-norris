@@ -17,12 +17,19 @@ namespace RunLittleChuckNorris.GameObject
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Plateforme : Microsoft.Xna.Framework.GameComponent
+    public class Plateforme : Obstacle
     {
+        #region Private members
+
+        float m_height = 2;
+        float m_width = 10;
+
+        #endregion
+
         public Plateforme(Game game)
             : base(game)
         {
-            // TODO: Construct any child components here
+            Sprite = new Helper.Sprite("Graphics/Sprites/Plateforme", game.Content);
         }
 
         /// <summary>
@@ -31,7 +38,6 @@ namespace RunLittleChuckNorris.GameObject
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
 
             base.Initialize();
         }
@@ -42,9 +48,32 @@ namespace RunLittleChuckNorris.GameObject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
 
             base.Update(gameTime);
         }
+
+        #region Properties
+
+        public float Height
+        {
+            get { return m_height; }
+            set 
+            { 
+                m_height = value;
+                Sprite.Scale = Vector2(m_width, m_height);
+            }
+        }
+
+        public float Width
+        {
+            get { return m_width; }
+            set 
+            { 
+                m_width = value;
+                Sprite.Scale = Vector2(m_width, m_height);
+            }
+        }
+
+        #endregion
     }
 }

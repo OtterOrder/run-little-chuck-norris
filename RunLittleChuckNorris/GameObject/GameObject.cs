@@ -60,8 +60,11 @@ namespace RunLittleChuckNorris.GameObject
         {
             base.Draw(gameTime);
 
-            // ask the sprite to be drawed based on camera properties
-            Sprite.Draw();
+            if (Sprite != null)
+            {
+                // ask the sprite to be drawed based on camera properties
+                Sprite.Draw();
+            }
         }
 
         #region Properties
