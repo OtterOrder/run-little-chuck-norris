@@ -57,11 +57,12 @@ namespace RunLittleChuckNorris.GameComponents
 
     public class HUD : Microsoft.Xna.Framework.DrawableGameComponent
     {
-        public static int NbStates = 2;
+        public static int NbStates = 3;
         public enum HUDState
         {
             Playing = 0,
-            GameOver = 1
+            GameOver = 1,
+            GameStart = 2
         }
 
         private HUDStateVars[] _mHUDStateVars = new HUDStateVars [NbStates];
