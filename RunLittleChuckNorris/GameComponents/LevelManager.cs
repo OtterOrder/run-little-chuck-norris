@@ -59,6 +59,7 @@ namespace RunLittleChuckNorris.GameComponents
 
         public void CreateInitLevel()
         {
+            List<GameComponent> toBeRemoved = new List<GameComponent>();
 
             // remove all existing gameobject
             foreach (GameComponent g in Game.Components)
@@ -71,8 +72,13 @@ namespace RunLittleChuckNorris.GameComponents
                           g is GameObject.Plateforme)
                 {
                     // remove it
-                    Game.Components.Remove(g);
+                    toBeRemoved.Add(g); 
                 }
+            }
+
+            foreach (GameComponent g in toBeRemoved)
+            {
+                Game.Components.Remove(g);
             }
 
             _mDefaultCam.SetViewportParam(0, 0, 1.0f, 1.0f);
