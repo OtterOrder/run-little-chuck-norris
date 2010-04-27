@@ -97,7 +97,7 @@ namespace RunLittleChuckNorris.GameObject
                 if (X + Sprite.Width / 2 >= p.X && Y > p.Y && speedy < 0)
                 {
                     // suppress speedy
-                    //speedy = 0;
+                    speedy = 0;
                     // is jump requested
                 }
                 else
@@ -128,7 +128,7 @@ namespace RunLittleChuckNorris.GameObject
             }
 
             // is colliding Obstacle ?
-            if (collisionManager.CollideObstacle(this) != null || Y > 800)
+            if (collisionManager.CollideObstacle(this) != null || Y > 1000)
             {
                 // dead
                 ((Helper.IGameOver)Game.Services.GetService(typeof(Helper.IGameOver))).GameOver();
