@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using RunLittleChuckNorris.Helper;
+using RunLittleChuckNorris.GameObject;
 
 namespace RunLittleChuckNorris
 {
@@ -26,6 +27,7 @@ namespace RunLittleChuckNorris
         public const int _mBackBufferHeight = 720;
 
         private Camera   _mDefaultCam;
+        private Player   _mPlayer;
 
         public Game1()
         {
@@ -50,6 +52,8 @@ namespace RunLittleChuckNorris
             _mDefaultCam = new Camera();
             _mDefaultCam.SetViewportParam(0, 0, 1.0f, 1.0f);
             _mDefaultCam.Position = new Vector2(0.0f, 0.0f);
+
+            _mPlayer = new Player(this, "Player");
 
             base.Initialize();
         }
@@ -79,6 +83,9 @@ namespace RunLittleChuckNorris
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            _mDefaultCam.mFocus.X = _mPlayer.X;
+            _mDefaultCam.mFocus.Y = _mPlayer.Y;
+
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();

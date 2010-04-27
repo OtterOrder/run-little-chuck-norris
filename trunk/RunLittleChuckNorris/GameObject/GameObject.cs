@@ -26,8 +26,7 @@ namespace RunLittleChuckNorris.GameObject
         float m_y;
 
 
-        public GameObject(Game game)
-            : base(game)
+        public GameObject(Game game) : base(game)
         {
             m_x = 0;
             m_y = 0;

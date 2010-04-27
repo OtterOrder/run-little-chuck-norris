@@ -17,12 +17,18 @@ namespace RunLittleChuckNorris.GameObject
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Bullet : Microsoft.Xna.Framework.GameComponent
+    public class Bullet : GameObject
     {
+        private float _mFireSpeed;
+
         public Bullet(Game game)
             : base(game)
         {
-            // TODO: Construct any child components here
+            Sprite = new Helper.Sprite("Bullet", Game.Content, 2, 4);
+            Sprite.Loop = false;
+            Sprite.Play = false;
+
+            _mFireSpeed = 5.0f;
         }
 
         /// <summary>
@@ -42,8 +48,7 @@ namespace RunLittleChuckNorris.GameObject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
-
+            X += _mFireSpeed;
             base.Update(gameTime);
         }
     }
