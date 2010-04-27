@@ -27,8 +27,6 @@ namespace RunLittleChuckNorris
         public const int _mBackBufferWidth = 1280;
         public const int _mBackBufferHeight = 720;
 
-        private Camera   _mDefaultCam;
-        private Player   _mPlayer;
         private HUD      _mHUD;
 
         public Game1()
@@ -53,13 +51,7 @@ namespace RunLittleChuckNorris
             Sprite.SprBatch = spriteBatch;
             Text.SprBatch = spriteBatch;
 
-            _mDefaultCam = new Camera();
-            _mDefaultCam.SetViewportParam(0, 0, 1.0f, 1.0f);
-            _mDefaultCam.Position = new Vector2(0.0f, 0.0f);
-
-            _mPlayer = new Player(this, "Player");
-
-            _mHUD = new HUD(this, _mDefaultCam);
+            _mHUD = new HUD(this, LevelManager.GetCurrentCam());
             _mHUD.Position = new Vector2(-100, 0);
 
             Services.AddService(typeof(IGameOver), this);
