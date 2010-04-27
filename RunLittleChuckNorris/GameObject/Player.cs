@@ -77,9 +77,9 @@ namespace RunLittleChuckNorris.GameObject
             {
                 speedy = -speedyMax;
             }
-            if (speedy > 50)
+            if (speedy > 20)
             {
-                speedy = 50;
+                speedy = 20;
             }
 
 
@@ -93,7 +93,7 @@ namespace RunLittleChuckNorris.GameObject
 
             if (p != null)
             {
-                // under ?
+                // under ? 
                 if (X + Sprite.Width / 2 >= p.X && Y > p.Y && speedy < 0)
                 {
                     // suppress speedy
