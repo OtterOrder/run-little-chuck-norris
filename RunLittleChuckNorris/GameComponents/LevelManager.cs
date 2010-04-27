@@ -101,7 +101,7 @@ namespace RunLittleChuckNorris.GameComponents
             GameObject.Plateforme p = new GameObject.Plateforme(Game);
             p.X = 0;
             p.Y = 500;
-            p.Width = 2000.0f;
+            p.Width = 3000.0f;
             p.Height = 50.0f;
 
             obj = new GameObject.Ennemy(Game);

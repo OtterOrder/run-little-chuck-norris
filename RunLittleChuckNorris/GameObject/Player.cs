@@ -47,7 +47,7 @@ namespace RunLittleChuckNorris.GameObject
             minJumpHeight = 150.0f;
             maxJumpHeight = 300.0f;
             m_bestDistance = 0;
-            speedyMax = 20.0f;
+            speedyMax = 30.0f;
 
             m_worldProvider = (Helper.IWorldProvider)game.Services.GetService(typeof(Helper.IWorldProvider));
         }
@@ -77,9 +77,9 @@ namespace RunLittleChuckNorris.GameObject
             {
                 speedy = -speedyMax;
             }
-            if (speedy > speedyMax)
+            if (speedy > 50)
             {
-                speedy = speedyMax;
+                speedy = 50;
             }
 
 
@@ -117,7 +117,7 @@ namespace RunLittleChuckNorris.GameObject
                             //jump
                             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                             {
-                                speedy = -15.0f;
+                                speedy = -speedyMax;
                             }
                             //currentJumpHeight = 0.0f;
                            // isJumping = false;
