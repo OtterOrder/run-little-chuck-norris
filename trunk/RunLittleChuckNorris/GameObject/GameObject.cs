@@ -58,6 +58,7 @@ namespace RunLittleChuckNorris.GameObject
             if (GameComponents.LevelManager.GetCurrentCam().MinX > (X + (Sprite.Width * Sprite.Scale.X)))
             {
                 Game.Components.Remove(this);
+                this.Dispose();
             }
 
             base.Update(gameTime);

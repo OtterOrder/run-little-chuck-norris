@@ -49,8 +49,14 @@ namespace RunLittleChuckNorris.GameObject
 
         protected override void UnloadContent()
         {
-            _mworldProvider.Obstacles.Remove(this);
+            
             base.UnloadContent();
+        }
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            _mworldProvider.Obstacles.Remove(this);
         }
     }
 }

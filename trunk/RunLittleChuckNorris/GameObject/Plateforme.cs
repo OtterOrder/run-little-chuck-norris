@@ -59,8 +59,15 @@ namespace RunLittleChuckNorris.GameObject
 
         protected override void UnloadContent()
         {
-            _mworldProvider.Plateformes.Remove(this);
+            
             base.UnloadContent();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            _mworldProvider.Plateformes.Remove(this);
         }
 
         #region Properties

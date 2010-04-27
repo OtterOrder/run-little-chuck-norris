@@ -92,6 +92,7 @@ namespace RunLittleChuckNorris.GameComponents
             foreach (GameComponent g in toBeRemoved)
             {
                 Game.Components.Remove(g);
+                g.Dispose();
             }
 
             _mDefaultCam.SetViewportParam(0, 0, 1.0f, 1.0f);
