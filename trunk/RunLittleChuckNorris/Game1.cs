@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+using RunLittleChuckNorris.Helper;
 
 namespace RunLittleChuckNorris
 {
@@ -20,6 +21,8 @@ namespace RunLittleChuckNorris
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        private Sprite _mSpr = null;
 
         public Game1()
         {
@@ -36,6 +39,9 @@ namespace RunLittleChuckNorris
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            _mSpr = new Sprite("Graphics/Sprites/Player", Content, 4, 10.0f); ////.
+            _mSpr.Loop = true;
 
             base.Initialize();
         }
@@ -73,6 +79,7 @@ namespace RunLittleChuckNorris
                 this.Exit();
 
             // TODO: Add your update logic here
+            _mSpr.Update((float)gameTime.ElapsedGameTime.TotalMilliseconds);
 
             base.Update(gameTime);
         }
@@ -84,6 +91,10 @@ namespace RunLittleChuckNorris
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();        ////.
+            _mSpr.Draw(spriteBatch);    ////.
+            spriteBatch.End();          ////.
 
             // TODO: Add your drawing code here
 
