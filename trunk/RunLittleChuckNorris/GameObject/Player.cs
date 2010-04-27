@@ -26,7 +26,7 @@ namespace RunLittleChuckNorris.GameObject
         public Player(Game game, String spriteName)
             : base(game)
         {
-            collisionManager = new Helper.CollisionManager();
+            collisionManager = new Helper.CollisionManager(game);
             this.Sprite = new Helper.Sprite("Graphics/Sprites/"+spriteName, this.Game.Content, 4, 4);
             this.Sprite.Loop = true;
             Sprite.Origin = new Vector2(Sprite.Width / 2, Sprite.Height);
