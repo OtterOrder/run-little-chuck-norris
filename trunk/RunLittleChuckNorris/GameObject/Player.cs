@@ -144,8 +144,6 @@ namespace RunLittleChuckNorris.GameObject
                                     m_runSoundInstance.Play();
                                 }
                             }
-                            //currentJumpHeight = 0.0f;
-                           // isJumping = false;
                         }
                     }
                 }

@@ -56,6 +56,7 @@ namespace RunLittleChuckNorris.GameObject
         {
             base.Dispose(disposing);
 
+            // remove the obstacle from the list of "actual valid obstacle"
             _mworldProvider.Obstacles.Remove(this);
         }
     }

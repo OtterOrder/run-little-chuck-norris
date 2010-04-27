@@ -33,6 +33,7 @@ namespace RunLittleChuckNorris.GameObject
         {
             Sprite = new Helper.Sprite("Graphics/Sprites/Plateforme", game.Content);
 
+            // get the interface responsible for the world info provider
             _mworldProvider = (Helper.IWorldProvider)Game.Services.GetService(typeof(Helper.IWorldProvider));
             _mworldProvider.Plateformes.Add(this);
         }
@@ -67,6 +68,7 @@ namespace RunLittleChuckNorris.GameObject
         {
             base.Dispose(disposing);
 
+            // remove the plateforme from the list of "actual valid plateforme"
             _mworldProvider.Plateformes.Remove(this);
         }
 
@@ -78,6 +80,7 @@ namespace RunLittleChuckNorris.GameObject
             set 
             { 
                 m_height = value;
+                // update the sprite
                 Sprite.Scale = new Vector2(m_width, m_height);
             }
         }
@@ -88,6 +91,7 @@ namespace RunLittleChuckNorris.GameObject
             set 
             { 
                 m_width = value;
+                // update the sprite
                 Sprite.Scale = new Vector2(m_width, m_height);
             }
         }
