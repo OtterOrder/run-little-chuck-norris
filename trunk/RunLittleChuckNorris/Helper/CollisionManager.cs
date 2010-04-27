@@ -30,11 +30,11 @@ namespace RunLittleChuckNorris.Helper
         public GameObject.Plateforme CollidePlatform(GameObject.GameObject obj)
         {
             // Rectangle du l'objet dont on veut savoir la collision
-            Rectangle baseRectangle = new Rectangle((int)obj.X, (int)obj.Y, obj.Sprite.Width, obj.Sprite.Width);
+            Rectangle baseRectangle = new Rectangle((int)obj.X - (int)obj.Sprite.Origin.X, (int)obj.Y - (int)obj.Sprite.Origin.Y, obj.Sprite.Width, obj.Sprite.Width);
 
             foreach (Plateforme obs in _mPlatformList)
             {
-                Rectangle blockRectangle = new Rectangle((int)obs.X, (int)obs.Y, obs.Sprite.Width, obs.Sprite.Height);
+                Rectangle blockRectangle = new Rectangle((int)obs.X, (int)obs.Y, (int)obs.Width, (int)obs.Height);
 
                  // Verifie la collision
                 if (baseRectangle.Intersects(blockRectangle))
