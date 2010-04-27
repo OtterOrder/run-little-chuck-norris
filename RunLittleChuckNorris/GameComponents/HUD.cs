@@ -136,7 +136,7 @@ namespace RunLittleChuckNorris.GameComponents
             {
                 _mCurrentHUDState.Texts[i].Position = _mCamera.Position + _mHUDStateVars[(int)_mState].Positions[i];
                 _mCurrentHUDState.Texts[i].TextValue = _mHUDStateVars[(int)_mState].TextValues[i].Replace("/Score", _mScore.ToString());
-                _mCurrentHUDState.Texts[i].TextValue = _mHUDStateVars[(int)_mState].TextValues[i].Replace("/HighScore", _mHighScore.ToString());
+                _mCurrentHUDState.Texts[i].TextValue = _mCurrentHUDState.Texts[i].TextValue.Replace("/HighScore", _mHighScore.ToString());
                 _mCurrentHUDState.Texts[i].Update();
             }
         }
