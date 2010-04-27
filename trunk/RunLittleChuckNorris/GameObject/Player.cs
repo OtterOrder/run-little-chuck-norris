@@ -48,7 +48,7 @@ namespace RunLittleChuckNorris.GameObject
         {
             m_speed = 5.0f;
             X = 20.0f;
-            Y = 100.0f;
+            Y = 490.0f;
             isJumping = false;
             currentJumpHeight = 0.0f;
         }
@@ -84,7 +84,6 @@ namespace RunLittleChuckNorris.GameObject
 
             Plateforme p;
             // is colliding Plateforme
-
             p = (Plateforme)collisionManager.CollidePlatform(this);
 
             if (!isJumping)
@@ -99,27 +98,32 @@ namespace RunLittleChuckNorris.GameObject
             if (p != null)
             {
                 // under ?
-                if (X >= p.X && Y > p.Y)
+                if (X + Sprite.Width / 2 >= p.X && Y > p.Y && speedy < 0)
                 {
                     // suppress speedy
-                    speedy = 0;
+                    //speedy = 0;
                     // is jump requested
                 }
                 else
                 {
                     // forward ?
-                    if (X < p.X && Y > p.Y)
+                    if (X + Sprite.Width / 2 < p.X && Y > p.Y)
                     {
                         // suppress speedx
                         speedx = 0;
                     }
                     else
                     {
-                        if (X >= p.X && Y <= p.Y)
+                        //over ?
+                        if (X + Sprite.Width / 2 >= p.X && Y <= p.Y + p.Height)
                         {
-                            speedy = 0.0f;
+                            if (!isJumping)
+                            {
+                                speedy = 0.0f;
+                                Y = p.Y+1;
+                            }
                             //currentJumpHeight = 0.0f;
-                            isJumping = false;
+                           // isJumping = false;
                         }
                     }
                 }
@@ -137,10 +141,6 @@ namespace RunLittleChuckNorris.GameObject
             // apply change on player position
             X += speedx;
             Y += speedy;
-            if (Y > 500)
-            {
-               // Y = 500;
-            }
         }
 
         #region Properties
