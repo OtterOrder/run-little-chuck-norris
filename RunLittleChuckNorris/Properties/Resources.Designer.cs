@@ -61,7 +61,7 @@ namespace RunLittleChuckNorris.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 0,5.
+        ///   Recherche une chaîne localisée semblable à 0,3.
         /// </summary>
         internal static string BG_SPEED {
             get {
