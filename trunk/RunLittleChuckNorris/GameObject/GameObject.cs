@@ -31,6 +31,7 @@ namespace RunLittleChuckNorris.GameObject
             m_x = 0;
             m_y = 0;
 
+            UpdateOrder = int.Parse(Properties.Resources.GAMEOBJECT_PRIORITY);
             game.Components.Add(this);
         }
 

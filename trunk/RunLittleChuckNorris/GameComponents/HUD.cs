@@ -80,6 +80,7 @@ namespace RunLittleChuckNorris.GameComponents
             for (int i = 0; i < NbStates; i++)
                 _mHUDStateVars[i] = new HUDStateVars(_ParamsArray[i], game.Content);
 
+            UpdateOrder = int.Parse(Properties.Resources.HUD_PRIORITY);
             game.Components.Add(this);
         }
 

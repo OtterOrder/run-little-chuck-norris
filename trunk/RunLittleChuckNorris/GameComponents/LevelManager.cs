@@ -24,6 +24,7 @@ namespace RunLittleChuckNorris.GameComponents
         public LevelManager(Game game)
             : base(game)
         {
+            UpdateOrder = int.Parse(Properties.Resources.LEVELMANAGER_PRIORITY);
         }
 
         static private Camera _mDefaultCam;
@@ -40,8 +41,8 @@ namespace RunLittleChuckNorris.GameComponents
         /// </summary>
         public override void Initialize()
         {
-            _mDefaultCam = new Camera();
             _mPlayer = new GameObject.Player(Game, "Player");
+            _mDefaultCam = new Camera();
             _mworldProvider = (IWorldProvider) Game.Services.GetService(typeof(IWorldProvider));
 
             _mPlayerOffset = 600;
@@ -59,8 +60,8 @@ namespace RunLittleChuckNorris.GameComponents
         {
             float Dt = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            _mDefaultCam.Update(Dt);
             _mDefaultCam.mFocus = new Vector2(_mPlayer.X + _mPlayerOffset, _mPlayer.Y);
+            _mDefaultCam.Update(Dt);
 
             if (_mDefaultCam.MaxX % _mRefreshDist == 0)
             {
