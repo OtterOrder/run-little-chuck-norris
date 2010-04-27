@@ -24,7 +24,6 @@ namespace RunLittleChuckNorris.GameComponents
         public LevelManager(Game game)
             : base(game)
         {
-            // TODO: Construct any child components here
         }
 
         static private Camera _mDefaultCam;
@@ -37,27 +36,9 @@ namespace RunLittleChuckNorris.GameComponents
         public override void Initialize()
         {
             _mDefaultCam = new Camera();
-            _mDefaultCam.SetViewportParam(0, 0, 1.0f, 1.0f);
-            _mDefaultCam.Position = new Vector2(0.0f, 0.0f);
-
-            GameObject.GameObject obj;
-            GameObject.Plateforme p = new GameObject.Plateforme(Game);
-            p.X = 50;
-            p.Y = 500;
-            p.Width = 10000.0f;
-            p.Height = 10.0f;
-
             _mPlayer = new GameObject.Player(Game, "Player");
 
-            obj = new GameObject.Ennemy(Game);
-            obj.X = 100;
-            obj.Y = 500;
-            obj = new GameObject.Caisse(Game);
-            obj.X = 150;
-            obj.Y = 500;
-            obj = new GameObject.Bullet(Game);
-            obj.X = 200;
-            obj.Y = 500;
+            CreateInitLevel();
 
             base.Initialize();
         }
@@ -74,6 +55,45 @@ namespace RunLittleChuckNorris.GameComponents
             _mDefaultCam.mFocus = new Vector2(_mPlayer.X, _mPlayer.Y);
 
             base.Update(gameTime);
+        }
+
+        public void CreateInitLevel()
+        {
+
+            // remove all existing gameobject
+            foreach (GameComponent g in Game.Components)
+            {
+                if (g is GameObject.Player)
+                {
+                    (g as GameObject.Player).Init();
+                }
+                else if ( g is GameObject.Obstacle ||
+                          g is GameObject.Plateforme)
+                {
+                    // remove it
+                    Game.Components.Remove(g);
+                }
+            }
+
+            _mDefaultCam.SetViewportParam(0, 0, 1.0f, 1.0f);
+            _mDefaultCam.Position = new Vector2(0.0f, 0.0f);
+
+            GameObject.GameObject obj;
+            GameObject.Plateforme p = new GameObject.Plateforme(Game);
+            p.X = 50;
+            p.Y = 500;
+            p.Width = 10000.0f;
+            p.Height = 10.0f;
+
+            obj = new GameObject.Ennemy(Game);
+            obj.X = 100;
+            obj.Y = 500;
+            obj = new GameObject.Caisse(Game);
+            obj.X = 150;
+            obj.Y = 500;
+            obj = new GameObject.Bullet(Game);
+            obj.X = 200;
+            obj.Y = 500;
         }
 
         static public Camera GetCurrentCam()

@@ -116,7 +116,7 @@ namespace RunLittleChuckNorris
         #region IGameOver
         public void GameOver()
         {
-            
+            _levelManager.CreateInitLevel();
         }
         #endregion
     }
