@@ -20,7 +20,6 @@ namespace RunLittleChuckNorris.GameObject
     public class Player : GameObject
     {
         private float m_speed;
-        private float m_distance;
 
         public Player(Game game, String spriteName)
             : base(game)
@@ -33,6 +32,32 @@ namespace RunLittleChuckNorris.GameObject
             Y = 500.0f;
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            float speedx = m_speed;
+            float speedy = 0;
+
+            // is colliding Plateforme
+                // under ?
+                    // suppress speedy
+                    // is jump requested
+                // forward ?
+                    // suppress speedx
+
+            // is colliding Obstacle ?
+                // dead
+
+            // is jumping ?
+                // modify speedy
+            
+
+            // apply change on player position
+            X += speedx;
+            Y += speedy;
+        }
+
         #region Properties
 
         public float Speed
@@ -43,8 +68,8 @@ namespace RunLittleChuckNorris.GameObject
 
         public float DistanceParcourue
         {
-            get { return m_distance; }
-            set { m_distance = value; }
+            get { return X; }
+            set { X = value; }
         }
 
         #endregion
