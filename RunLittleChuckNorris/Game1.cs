@@ -90,10 +90,7 @@ namespace RunLittleChuckNorris
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            float Dt = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            _mDefaultCam.Update(Dt);
-            _mDefaultCam.mFocus = new Vector2(_mPlayer.X, _mPlayer.Y);
+ 
 
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
@@ -110,9 +107,9 @@ namespace RunLittleChuckNorris
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            //_mDefaultCam.SetCamera(graphics);
+            LevelManager.GetCurrentCam().SetCamera(graphics);
 
-            spriteBatch.Begin();//SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, _mDefaultCam.mTransform);
+            spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, LevelManager.GetCurrentCam().mTransform);
 
             base.Draw(gameTime);
 
