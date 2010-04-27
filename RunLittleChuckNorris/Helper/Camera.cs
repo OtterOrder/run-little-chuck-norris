@@ -49,6 +49,11 @@ namespace RunLittleChuckNorris.Helper
             get { return _mPosition.X - (_mViewport.Width / 2); }
         }
 
+        public float MaxX
+        {
+            get { return _mPosition.X + (_mViewport.Width / 2); }
+        }
+
         public void SetViewportParam(float _PosX, float _PosY, float _Width, float _Height)
         {
             _mViewport.Width = (int)(_Width * _mBackBufferWidth);

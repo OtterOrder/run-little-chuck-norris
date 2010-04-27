@@ -31,6 +31,9 @@ namespace RunLittleChuckNorris.GameComponents
         private IWorldProvider _mworldProvider;
         private float _mPlayerOffset;
 
+        private int _mRefreshDist = 1300;
+        Random rand = new Random(DateTime.Now.Millisecond); 
+
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
         /// to run.  This is where it can query for any required services and load content.
@@ -58,6 +61,11 @@ namespace RunLittleChuckNorris.GameComponents
 
             _mDefaultCam.Update(Dt);
             _mDefaultCam.mFocus = new Vector2(_mPlayer.X + _mPlayerOffset, _mPlayer.Y);
+
+            if (_mDefaultCam.MaxX % _mRefreshDist == 0)
+            {
+                CreateNextPiece((int)_mDefaultCam.MaxX);
+            }
 
             base.Update(gameTime);
         }
@@ -102,6 +110,20 @@ namespace RunLittleChuckNorris.GameComponents
             obj = new GameObject.Caisse(Game);
             obj.X = 800;
             obj.Y = 500;
+        }
+
+        private void CreateNextPiece(int startX)
+        {
+            int hauteur = rand.Next(200, 400);
+            int taille = rand.Next(100, 200);
+
+            GameObject.GameObject obj;
+            GameObject.Plateforme p = new GameObject.Plateforme(Game);
+            p.X = startX;
+            p.Y = hauteur;
+            p.Width = taille;
+            p.Height = 10.0f;
+
         }
 
         static public Camera GetCurrentCam()
