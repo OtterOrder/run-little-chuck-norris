@@ -54,19 +54,19 @@ namespace RunLittleChuckNorris.GameObject
 
         #region Properties
 
-        int X
+        public int X
         {
             get { return m_x; }
             set { m_x = value; }
         }
 
-        int Y
+        public int Y
         {
             get { return m_y; }
             set { m_y = value; }
         }
 
-        Helper.Sprite Sprite
+        public Helper.Sprite Sprite
         {
             get { return m_sprite; }
         }
