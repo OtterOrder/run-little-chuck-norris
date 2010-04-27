@@ -17,34 +17,47 @@ namespace RunLittleChuckNorris.GameObject
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Ennemy : Microsoft.Xna.Framework.GameComponent
+    public class Ennemy :  GameObject
     {
+        private float m_fireRate;
+        private float m_timeSinceLastShot;
+
         public Ennemy(Game game)
             : base(game)
         {
-            // TODO: Construct any child components here
+            Sprite = new Helper.Sprite("Ennemy", Game.Content, 2, 4);
+            Sprite.Loop = false;
+            Sprite.Play = false;
+            m_fireRate = 750.0f;
+            m_timeSinceLastShot = 0.0f;
         }
 
-        /// <summary>
-        /// Allows the game component to perform any initialization it needs to before starting
-        /// to run.  This is where it can query for any required services and load content.
-        /// </summary>
-        public override void Initialize()
-        {
-            // TODO: Add your initialization code here
-
-            base.Initialize();
-        }
-
-        /// <summary>
-        /// Allows the game component to update itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
-
+            m_timeSinceLastShot += gameTime.ElapsedGameTime.Milliseconds;
+            if(m_timeSinceLastShot >= m_fireRate)
+            {
+                Sprite.Play = true;
+                Sprite.Restart();
+                m_timeSinceLastShot = 0.0f;
+            }
             base.Update(gameTime);
         }
+        
+        #region Properties
+
+        public float FireRate
+        {
+            get { return m_fireRate; }
+            set { m_fireRate = value; }
+        }
+
+        public float TimeSinceLastShot
+        {
+            get { return m_timeSinceLastShot; }
+            set { m_timeSinceLastShot = value; }
+        }
+
+        #endregion
     }
 }
