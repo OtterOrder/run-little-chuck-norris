@@ -22,6 +22,7 @@ namespace RunLittleChuckNorris.GameObject
         private float m_fireRate;
         private float m_timeSinceLastShot;
         private Helper.IWorldProvider m_worldProvider;
+        private SoundEffect m_ShootSound;
 
         public Ennemy(Game game)
             : base(game)
@@ -48,6 +49,8 @@ namespace RunLittleChuckNorris.GameObject
             m_timeSinceLastShot += gameTime.ElapsedGameTime.Milliseconds;
             if(m_timeSinceLastShot >= m_fireRate)
             {
+                m_ShootSound.Play();
+
                 Sprite.Play = true;
                 Sprite.Restart();
                 m_timeSinceLastShot = 0.0f;
@@ -56,6 +59,12 @@ namespace RunLittleChuckNorris.GameObject
                 b.X = this.X;
                 b.Y = this.Y - (Sprite.Height - b.Sprite.Height) / 2;
             }
+        }
+
+        protected override void LoadContent()
+        {
+            m_ShootSound = Game.Content.Load<SoundEffect>("Sound/shoot");
+            base.LoadContent();
         }
         
         #region Properties
