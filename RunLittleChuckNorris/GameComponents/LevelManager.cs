@@ -33,6 +33,7 @@ namespace RunLittleChuckNorris.GameComponents
         private float _mPlayerOffset;
 
         private int _mRefreshDist = 1300;
+        private int probCaisse = 90;
         Random rand = new Random(DateTime.Now.Millisecond); 
 
         /// <summary>
@@ -116,14 +117,15 @@ namespace RunLittleChuckNorris.GameComponents
 
         private void CreateNextPiece(int startX)
         {
-            int maxWidth = 1000;
+            int maxLongCaisse = 250;
             GameObject.GameObject obj;
 
             int nbdiv = rand.Next(3, 5);
             int hauteur = rand.Next(200, 400);
 
-            int longmoy = maxWidth / nbdiv;
+            int longmoy = 1000 / nbdiv;
 
+            //Apparition décors
             for (int i = 0; i < nbdiv; i++)
             {
                 GameObject.Plateforme p = new GameObject.Plateforme(Game);
@@ -138,12 +140,25 @@ namespace RunLittleChuckNorris.GameComponents
                 offset = rand.Next(50, 100);
                 sense = rand.Next(-1, 1);
                 if (sense == 0) sense = 1;
-                int longueur = longmoy + offset * sense; ;
+                int longueur = longmoy + offset * sense;
                 p.Width = longueur;
-
                 p.Height = 50.0f;
 
+                // Apparition caisse
+                if (longueur > maxLongCaisse && probCaisse >= 100)
+                {
+                    probCaisse = 0;
+                    obj = new GameObject.Caisse(Game);
+                    int place = rand.Next(0, 2);
+                    if(place == 0)
+                        obj.X = startX + (longueur - 20);
+                    else
+                        obj.X = startX + (longueur / 5);
+                    obj.Y = hauteur;
+                }
+
                 startX += (longueur + rand.Next(50, 100));
+                probCaisse += rand.Next(5, 10);
             }
 
         }
