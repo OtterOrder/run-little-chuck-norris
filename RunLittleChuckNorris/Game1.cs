@@ -54,12 +54,12 @@ namespace RunLittleChuckNorris
             Sprite.SprBatch = spriteBatch;
             Text.SprBatch = spriteBatch;
 
-            _mHUD = new HUD(this, LevelManager.GetCurrentCam());
-            _mHUD.Position = new Vector2(-100, 0);
-
             Services.AddService(typeof(IGameOver), this);
 
             base.Initialize();
+
+            _mHUD = new HUD(this, LevelManager.GetCurrentCam());
+            _mHUD.Position = new Vector2(-graphics.PreferredBackBufferWidth / 2.0f + 250.0f, -graphics.PreferredBackBufferHeight / 2.0f);
         }
 
         /// <summary>
