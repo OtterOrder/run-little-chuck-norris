@@ -39,6 +39,9 @@ namespace RunLittleChuckNorris.GameObject
 
         public override void Update(GameTime gameTime)
         {
+
+            base.Update(gameTime);
+
             if (m_worldProvider.IsFreezed)
                 return;
 
@@ -53,7 +56,6 @@ namespace RunLittleChuckNorris.GameObject
                 b.X = this.X;
                 b.Y = this.Y ;
             }
-            base.Update(gameTime);
         }
         
         #region Properties

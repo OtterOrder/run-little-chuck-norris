@@ -116,7 +116,7 @@ namespace RunLittleChuckNorris
             TxtParams.TextValue = "Your Highest Score : /HighScore";
             TxtParams.Color = Color.Red;
             TxtParams.Mode = Text.TextMode.Center;
-            TxtParams.Position = new Vector2(0.0f, 100.0f);
+            TxtParams.Position = new Vector2(0.0f, 140.0f);
             ParamsArray[(int)HUD.HUDState.GameOver].ParamsList.Add(TxtParams);
 
             TxtParams = new TextParams();

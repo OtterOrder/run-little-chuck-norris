@@ -52,12 +52,13 @@ namespace RunLittleChuckNorris.GameObject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             if (_mWorldProvider.IsFreezed)
                 return;
 
             X += _mFireSpeed;
 
-            base.Update(gameTime);
         }
     }
 }
