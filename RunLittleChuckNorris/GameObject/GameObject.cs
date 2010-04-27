@@ -30,6 +30,8 @@ namespace RunLittleChuckNorris.GameObject
         {
             m_x = 0;
             m_y = 0;
+
+            game.Components.Add(this);
         }
 
         /// <summary>
@@ -66,24 +68,48 @@ namespace RunLittleChuckNorris.GameObject
             }
         }
 
+        #region Private Methods
+
+        void UpdateSprite()
+        {
+            if (Sprite != null)
+            {
+                m_sprite.Position = new Vector2(m_x, m_y);
+            }
+        }
+
+        #endregion 
+
         #region Properties
 
         public float X
         {
             get { return m_x; }
-            set { m_x = value; }
+            set 
+            { 
+                m_x = value;
+                UpdateSprite();
+            }
         }
 
         public float Y
         {
             get { return m_y; }
-            set { m_y = value; }
+            set 
+            { 
+                m_y = value;
+                UpdateSprite();
+            }
         }
 
         public Helper.Sprite Sprite
         {
             get { return m_sprite; }
-            set { m_sprite = value; }
+            set 
+            { 
+                m_sprite = value;
+                UpdateSprite();
+            }
         }
 
         #endregion

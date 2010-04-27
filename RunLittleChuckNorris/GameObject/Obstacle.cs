@@ -22,6 +22,7 @@ namespace RunLittleChuckNorris.GameObject
         public Obstacle(Game game)
             : base(game)
         {            
+            
         }
 
         /// <summary>
