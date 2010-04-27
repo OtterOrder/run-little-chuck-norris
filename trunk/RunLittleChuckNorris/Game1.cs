@@ -31,12 +31,18 @@ namespace RunLittleChuckNorris
 
         private HUD      _mHUD;
 
+        private List<GameObject.Plateforme> _mPlateformes;
+        private List<GameObject.Obstacle> _mObstacles;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = _mBackBufferWidth;
             graphics.PreferredBackBufferHeight = _mBackBufferHeight;
             Content.RootDirectory = "Content";
+
+            _mPlateformes = new List<GameObject.Plateforme>();
+            _mObstacles = new List<GameObject.Obstacle>();
 
             _levelManager = new GameComponents.LevelManager(this);
             _collisionManager = new CollisionManager(this);
@@ -96,7 +102,13 @@ namespace RunLittleChuckNorris
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            
+
+
             base.Update(gameTime);
+
+            // update the HUD score
+            _mHUD.Score = _levelManager.Player.DistanceParcourue;
         }
 
         /// <summary>
@@ -129,12 +141,12 @@ namespace RunLittleChuckNorris
 
         public List<GameObject.Obstacle> Obstacles
         {
-            get { return null; }
+            get { return _mObstacles; }
         }
 
         public List<GameObject.Plateforme> Plateformes
         {
-            get { return null; }
+            get { return _mPlateformes; }
         }
 
         #endregion
