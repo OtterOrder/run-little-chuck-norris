@@ -17,7 +17,7 @@ namespace RunLittleChuckNorris.GameObject
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Ennemy :  GameObject
+    public class Ennemy : Obstacle
     {
         private float m_fireRate;
         private float m_timeSinceLastShot;
