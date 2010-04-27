@@ -54,7 +54,7 @@ namespace RunLittleChuckNorris.GameObject
 
                 Bullet b = new Bullet(Game);
                 b.X = this.X;
-                b.Y = this.Y ;
+                b.Y = this.Y - (Sprite.Height - b.Sprite.Height) / 2;
             }
         }
         
