@@ -31,7 +31,25 @@ namespace RunLittleChuckNorris.GameComponents
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
+            // TODO: Add your initialization code here 
+            GameObject.GameObject obj;
+            GameObject.Plateforme p = new GameObject.Plateforme(Game);
+            p.X = 50;
+            p.Y = 50;
+            p.Width = 10000.0f;
+            p.Height = 10.0f;
+
+            new GameObject.Player(Game, "Player");
+
+            obj = new GameObject.Ennemy(Game);
+            obj.X = 100;
+            obj.Y = 50;
+            obj = new GameObject.Caisse(Game);
+            obj.X = 150;
+            obj.Y = 50;
+            obj = new GameObject.Bullet(Game);
+            obj.X = 200;
+            obj.Y = 50;
 
             base.Initialize();
         }
