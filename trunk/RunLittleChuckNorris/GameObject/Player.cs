@@ -46,11 +46,16 @@ namespace RunLittleChuckNorris.GameObject
 
         public void Init()
         {
-            m_speed = 5.0f;
+            m_speed = 0.0f;
             X = 20.0f;
             Y = 490.0f;
             isJumping = false;
             currentJumpHeight = 0.0f;
+        }
+
+        public void Start()
+        {
+            m_speed = 5.0f;
         }
 
         public override void Update(GameTime gameTime)
