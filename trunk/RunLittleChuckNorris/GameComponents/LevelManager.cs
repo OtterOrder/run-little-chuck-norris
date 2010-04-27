@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+using RunLittleChuckNorris.GameObject;
+using RunLittleChuckNorris.Helper;
 
 
 namespace RunLittleChuckNorris.GameComponents
@@ -25,13 +27,19 @@ namespace RunLittleChuckNorris.GameComponents
             // TODO: Construct any child components here
         }
 
+        static private Camera _mDefaultCam;
+        private Player _mPlayer;
+
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
         /// to run.  This is where it can query for any required services and load content.
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here 
+            _mDefaultCam = new Camera();
+            _mDefaultCam.SetViewportParam(0, 0, 1.0f, 1.0f);
+            _mDefaultCam.Position = new Vector2(0.0f, 0.0f);
+
             GameObject.GameObject obj;
             GameObject.Plateforme p = new GameObject.Plateforme(Game);
             p.X = 50;
@@ -39,7 +47,7 @@ namespace RunLittleChuckNorris.GameComponents
             p.Width = 10000.0f;
             p.Height = 10.0f;
 
-            new GameObject.Player(Game, "Player");
+            _mPlayer = new GameObject.Player(Game, "Player");
 
             obj = new GameObject.Ennemy(Game);
             obj.X = 100;
@@ -60,9 +68,17 @@ namespace RunLittleChuckNorris.GameComponents
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
+            float Dt = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            _mDefaultCam.Update(Dt);
+            _mDefaultCam.mFocus = new Vector2(_mPlayer.X, _mPlayer.Y);
 
             base.Update(gameTime);
+        }
+
+        static public Camera GetCurrentCam()
+        {
+            return _mDefaultCam;
         }
     }
 }
