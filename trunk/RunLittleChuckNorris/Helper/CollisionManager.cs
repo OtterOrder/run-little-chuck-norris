@@ -15,7 +15,7 @@ namespace RunLittleChuckNorris.Helper
     class CollisionManager
     {
         private List<Obstacle> _mObstacleList = new List<Obstacle>();
-        private List<Obstacle> _mPlatformList = new List<Obstacle>();
+        private List<Plateforme> _mPlatformList = new List<Plateforme>();
 
         private IWorldProvider _wordlProvider;
 
@@ -24,26 +24,20 @@ namespace RunLittleChuckNorris.Helper
             _wordlProvider = (IWorldProvider)game.Services.GetService(typeof(IWorldProvider));
 
             _mObstacleList = _wordlProvider.Obstacles;
-            _mPlatformList = _wordlProvider.Obstacles;
+            _mPlatformList = _wordlProvider.Plateformes;
         }
 
-        public void UpdateListObstacle()
-        {
-            _mObstacleList = _wordlProvider.Obstacles;
-            _mPlatformList = _wordlProvider.Obstacles;
-        }
-
-        GameObject.GameObject Collide(GameObject.GameObject obj)
+        public GameObject.GameObject Collide(GameObject.GameObject obj)
         {
             // Rectangle du l'objet dont on veut savoir la collision
-            Rectangle personRectangle = new Rectangle((int)obj.X, (int)obj.Y, obj.Sprite.Width, obj.Sprite.Width);
+            Rectangle baseRectangle = new Rectangle((int)obj.X, (int)obj.Y, obj.Sprite.Width, obj.Sprite.Width);
 
             foreach (Obstacle obs in _mPlatformList)
             {
                 Rectangle blockRectangle = new Rectangle((int)obs.X, (int)obs.Y, obs.Sprite.Width, obs.Sprite.Height);
 
                  // Verifie la collision
-                if (personRectangle.Intersects(blockRectangle))
+                if (baseRectangle.Intersects(blockRectangle))
                 {
                     GameObject.GameObject collisionObj = (GameObject.GameObject)obs;
                     return collisionObj;
