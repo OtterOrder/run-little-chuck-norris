@@ -30,6 +30,9 @@ namespace RunLittleChuckNorris.GameObject
             : base(game)
         {
             Sprite = new Helper.Sprite("Graphics/Sprites/Plateforme", game.Content);
+
+            Helper.IWorldProvider worldProvider = (Helper.IWorldProvider)Game.Services.GetService(typeof(Helper.IWorldProvider));
+            worldProvider.Plateformes.Add(this);
         }
 
         /// <summary>

@@ -21,8 +21,9 @@ namespace RunLittleChuckNorris.GameObject
     {
         public Obstacle(Game game)
             : base(game)
-        {            
-            
+        {
+            Helper.IWorldProvider worldProvider = (Helper.IWorldProvider)Game.Services.GetService(typeof(Helper.IWorldProvider)); 
+            worldProvider.Obstacles.Add(this);
         }
 
         /// <summary>
