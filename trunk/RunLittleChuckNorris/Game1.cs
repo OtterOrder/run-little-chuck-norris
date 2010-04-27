@@ -33,6 +33,8 @@ namespace RunLittleChuckNorris
         private List<GameObject.Plateforme> _mPlateformes;
         private List<GameObject.Obstacle> _mObstacles;
 
+        private bool _mIsGamePaused;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -45,6 +47,8 @@ namespace RunLittleChuckNorris
 
             _levelManager = new GameComponents.LevelManager(this);
             Components.Add(_levelManager);
+
+            _mIsGamePaused = true;
         }
 
         /// <summary>
@@ -99,7 +103,12 @@ namespace RunLittleChuckNorris
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            
+            // when we are in pause (the game just started or after game over
+            if (_mIsGamePaused && Keyboard.GetState().IsKeyDown(Keys.X))
+            {
+                //_levelManager.Player.Start();
+                _mIsGamePaused = false;
+            }
 
 
             base.Update(gameTime);
@@ -130,6 +139,13 @@ namespace RunLittleChuckNorris
         public void GameOver()
         {
             _levelManager.CreateInitLevel();
+            _mIsGamePaused = true;
+
+            // compare the current score to the previous best one and keep the best...
+            _levelManager.Player.BestDistance = Math.Max(_levelManager.Player.BestDistance, _levelManager.Player.DistanceParcourue);
+
+            // display the HUD
+
         }
 
         #endregion

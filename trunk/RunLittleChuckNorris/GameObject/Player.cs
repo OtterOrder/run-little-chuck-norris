@@ -25,6 +25,7 @@ namespace RunLittleChuckNorris.GameObject
         private float minJumpHeight;
         private float maxJumpHeight;
         private bool isJumping;
+        private float m_bestDistance;
 
         public Player(Game game, String spriteName)
             : base(game)
@@ -40,6 +41,7 @@ namespace RunLittleChuckNorris.GameObject
             currentJumpHeight = 0.0f;
             minJumpHeight = 150.0f;
             maxJumpHeight = 300.0f;
+            m_bestDistance = 0;
         }
 
         public void Init()
@@ -153,6 +155,12 @@ namespace RunLittleChuckNorris.GameObject
         {
             get { return X; }
             set { X = value; }
+        }
+
+        public float BestDistance
+        {
+            get { return m_bestDistance; }
+            set { m_bestDistance = value; }
         }
 
         #endregion
