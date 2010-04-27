@@ -24,11 +24,11 @@ namespace RunLittleChuckNorris.GameObject
         public Bullet(Game game)
             : base(game)
         {
-            Sprite = new Helper.Sprite("Bullet", Game.Content, 2, 4);
+            Sprite = new Helper.Sprite("Graphics/Sprites/Bullet", Game.Content, 2, 4);
             Sprite.Loop = false;
             Sprite.Play = false;
 
-            _mFireSpeed = 5.0f;
+            _mFireSpeed = -5.0f;
         }
 
         /// <summary>

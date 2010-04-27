@@ -25,7 +25,7 @@ namespace RunLittleChuckNorris.GameObject
         public Ennemy(Game game)
             : base(game)
         {
-            Sprite = new Helper.Sprite("Ennemy", Game.Content, 2, 4);
+            Sprite = new Helper.Sprite("Graphics/Sprites/Enemy", Game.Content, 2, 4);
             Sprite.Loop = false;
             Sprite.Play = false;
             m_fireRate = 750.0f;
