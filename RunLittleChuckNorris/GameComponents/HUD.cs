@@ -81,6 +81,7 @@ namespace RunLittleChuckNorris.GameComponents
                 _mHUDStateVars[i] = new HUDStateVars(_ParamsArray[i], game.Content);
 
             UpdateOrder = int.Parse(Properties.Resources.HUD_PRIORITY);
+            DrawOrder = int.Parse(Properties.Resources.HUD_DRAW_PRIORITY);
             game.Components.Add(this);
         }
 

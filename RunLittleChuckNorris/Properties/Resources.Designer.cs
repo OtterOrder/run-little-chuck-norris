@@ -61,11 +61,29 @@ namespace RunLittleChuckNorris.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à 0.
+        /// </summary>
+        internal static string GAMEOBJECT_DRAW_PRIORITY {
+            get {
+                return ResourceManager.GetString("GAMEOBJECT_DRAW_PRIORITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à 1.
         /// </summary>
         internal static string GAMEOBJECT_PRIORITY {
             get {
                 return ResourceManager.GetString("GAMEOBJECT_PRIORITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 1.
+        /// </summary>
+        internal static string HUD_DRAW_PRIORITY {
+            get {
+                return ResourceManager.GetString("HUD_DRAW_PRIORITY", resourceCulture);
             }
         }
         
