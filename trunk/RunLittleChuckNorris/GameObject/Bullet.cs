@@ -27,6 +27,7 @@ namespace RunLittleChuckNorris.GameObject
             Sprite = new Helper.Sprite("Graphics/Sprites/Bullet", Game.Content, 2, 4);
             Sprite.Loop = false;
             Sprite.Play = false;
+            Sprite.Origin = new Vector2(Sprite.Width / 2, Sprite.Height);
 
             _mFireSpeed = -5.0f;
         }

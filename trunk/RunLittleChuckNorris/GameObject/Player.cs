@@ -26,6 +26,7 @@ namespace RunLittleChuckNorris.GameObject
         {
             this.Sprite = new Helper.Sprite("Graphics/Sprites/"+spriteName, this.Game.Content, 4, 4);
             this.Sprite.Loop = true;
+            Sprite.Origin = new Vector2(Sprite.Width / 2, Sprite.Height);
             m_speed = 5.0f;
             X = 20.0f;
             Y = 20.0f;
