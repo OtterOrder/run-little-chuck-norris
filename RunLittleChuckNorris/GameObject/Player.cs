@@ -61,7 +61,7 @@ namespace RunLittleChuckNorris.GameObject
         {
             m_speed = 10.0f;
             X = 20.0f;
-            Y = 490.0f;
+            Y = 500.0f;
             isJumping = false;
             currentJumpHeight = 0.0f;
             speedy = speedyMax;
