@@ -17,12 +17,11 @@ namespace RunLittleChuckNorris.GameObject
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Obstacle : Microsoft.Xna.Framework.GameComponent
+    public class Obstacle : GameObject
     {
         public Obstacle(Game game)
             : base(game)
-        {
-            // TODO: Construct any child components here
+        {            
         }
 
         /// <summary>
@@ -31,8 +30,6 @@ namespace RunLittleChuckNorris.GameObject
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
-
             base.Initialize();
         }
 
@@ -42,8 +39,6 @@ namespace RunLittleChuckNorris.GameObject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
-
             base.Update(gameTime);
         }
     }
