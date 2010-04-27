@@ -19,7 +19,7 @@ namespace RunLittleChuckNorris
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game, Helper.IGameOver
+    public class Game1 : Microsoft.Xna.Framework.Game, Helper.IGameOver, Helper.IWorldProvider
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -55,6 +55,7 @@ namespace RunLittleChuckNorris
             Text.SprBatch = spriteBatch;
 
             Services.AddService(typeof(IGameOver), this);
+            Services.AddService(typeof(IWorldProvider), this);
 
             base.Initialize();
 
@@ -114,10 +115,26 @@ namespace RunLittleChuckNorris
         }
 
         #region IGameOver
+
         public void GameOver()
         {
             _levelManager.CreateInitLevel();
         }
+
+        #endregion
+
+        #region IWorldProvider
+
+        public List<GameObject.Obstacle> Obstacles
+        {
+            get { return null; }
+        }
+
+        public List<GameObject.Plateforme> Plateformes
+        {
+            get { return null; }
+        }
+
         #endregion
     }
 }
