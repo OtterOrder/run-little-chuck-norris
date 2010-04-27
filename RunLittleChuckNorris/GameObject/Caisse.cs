@@ -24,6 +24,7 @@ namespace RunLittleChuckNorris.GameObject
             : base(game)
         {
             this.Sprite = new Helper.Sprite("Graphics/Sprites/Obstacle", Game.Content);
+            Sprite.Origin = new Vector2(Sprite.Width / 2, Sprite.Height);
         }
 
         /// <summary>

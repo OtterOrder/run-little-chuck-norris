@@ -28,6 +28,7 @@ namespace RunLittleChuckNorris.GameObject
             Sprite = new Helper.Sprite("Graphics/Sprites/Enemy", Game.Content, 2, 4);
             Sprite.Loop = false;
             Sprite.Play = false;
+            Sprite.Origin = new Vector2(Sprite.Width/2, Sprite.Height);
             m_fireRate = 750.0f;
             m_timeSinceLastShot = 0.0f;
         }
