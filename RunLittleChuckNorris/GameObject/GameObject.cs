@@ -54,6 +54,12 @@ namespace RunLittleChuckNorris.GameObject
                 Sprite.Update((float)gameTime.ElapsedGameTime.TotalMilliseconds);
             }
 
+            // remove the gameobject when the camera has passed by
+            if (GameComponents.LevelManager.GetCurrentCam().MinX > (X + (Sprite.Width * Sprite.Scale.X)))
+            {
+                Game.Components.Remove(this);
+            }
+
             base.Update(gameTime);
         }
 

@@ -29,6 +29,7 @@ namespace RunLittleChuckNorris.GameComponents
         static private Camera _mDefaultCam;
         private Player _mPlayer;
         private IWorldProvider _mworldProvider;
+        private float _mPlayerOffset;
 
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
@@ -39,6 +40,8 @@ namespace RunLittleChuckNorris.GameComponents
             _mDefaultCam = new Camera();
             _mPlayer = new GameObject.Player(Game, "Player");
             _mworldProvider = (IWorldProvider) Game.Services.GetService(typeof(IWorldProvider));
+
+            _mPlayerOffset = 600;
 
             CreateInitLevel();
 
@@ -54,7 +57,7 @@ namespace RunLittleChuckNorris.GameComponents
             float Dt = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             _mDefaultCam.Update(Dt);
-            _mDefaultCam.mFocus = new Vector2(_mPlayer.X, _mPlayer.Y);
+            _mDefaultCam.mFocus = new Vector2(_mPlayer.X + _mPlayerOffset, _mPlayer.Y);
 
             base.Update(gameTime);
         }
@@ -70,19 +73,11 @@ namespace RunLittleChuckNorris.GameComponents
                 {
                     (g as GameObject.Player).Init();
                 }
-                else if (g is GameObject.Obstacle)
+                else if (g is GameObject.Obstacle ||
+                         g is GameObject.Plateforme)
                 {
                     // remove it
                     toBeRemoved.Add(g);
-
-                    _mworldProvider.Obstacles.Remove(g as GameObject.Obstacle);
-                }
-                else if (g is GameObject.Plateforme)
-                {
-                    // remove it
-                    toBeRemoved.Add(g);
-
-                    _mworldProvider.Plateformes.Remove(g as GameObject.Plateforme);
                 }
             }
 
@@ -102,13 +97,10 @@ namespace RunLittleChuckNorris.GameComponents
             p.Height = 10.0f;
 
             obj = new GameObject.Ennemy(Game);
-            obj.X = 100;
+            obj.X = 500;
             obj.Y = 500;
             obj = new GameObject.Caisse(Game);
             obj.X = 150;
-            obj.Y = 500;
-            obj = new GameObject.Bullet(Game);
-            obj.X = 200;
             obj.Y = 500;
         }
 

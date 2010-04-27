@@ -19,11 +19,14 @@ namespace RunLittleChuckNorris.GameObject
     /// </summary>
     public class Obstacle : GameObject
     {
+        Helper.IWorldProvider _mworldProvider;
+
         public Obstacle(Game game)
             : base(game)
         {
-            Helper.IWorldProvider worldProvider = (Helper.IWorldProvider)Game.Services.GetService(typeof(Helper.IWorldProvider)); 
-            worldProvider.Obstacles.Add(this);
+            _mworldProvider = (Helper.IWorldProvider)Game.Services.GetService(typeof(Helper.IWorldProvider));
+            _mworldProvider.Obstacles.Add(this);
+
         }
 
         /// <summary>
@@ -42,6 +45,12 @@ namespace RunLittleChuckNorris.GameObject
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+        }
+
+        protected override void UnloadContent()
+        {
+            _mworldProvider.Obstacles.Remove(this);
+            base.UnloadContent();
         }
     }
 }

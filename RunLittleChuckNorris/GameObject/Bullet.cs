@@ -50,6 +50,7 @@ namespace RunLittleChuckNorris.GameObject
         public override void Update(GameTime gameTime)
         {
             X += _mFireSpeed;
+
             base.Update(gameTime);
         }
     }

@@ -24,6 +24,8 @@ namespace RunLittleChuckNorris.GameObject
         float m_height = 2;
         float m_width = 10;
 
+        Helper.IWorldProvider _mworldProvider;
+
         #endregion
 
         public Plateforme(Game game)
@@ -31,8 +33,8 @@ namespace RunLittleChuckNorris.GameObject
         {
             Sprite = new Helper.Sprite("Graphics/Sprites/Plateforme", game.Content);
 
-            Helper.IWorldProvider worldProvider = (Helper.IWorldProvider)Game.Services.GetService(typeof(Helper.IWorldProvider));
-            worldProvider.Plateformes.Add(this);
+            _mworldProvider = (Helper.IWorldProvider)Game.Services.GetService(typeof(Helper.IWorldProvider));
+            _mworldProvider.Plateformes.Add(this);
         }
 
         /// <summary>
@@ -53,6 +55,12 @@ namespace RunLittleChuckNorris.GameObject
         {
 
             base.Update(gameTime);
+        }
+
+        protected override void UnloadContent()
+        {
+            _mworldProvider.Plateformes.Remove(this);
+            base.UnloadContent();
         }
 
         #region Properties
