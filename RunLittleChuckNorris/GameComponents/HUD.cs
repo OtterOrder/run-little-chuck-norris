@@ -70,6 +70,7 @@ namespace RunLittleChuckNorris.GameComponents
 
         private Camera _mCamera = null;
         private float _mScore = 0.0f;
+        private float _mHighScore = 0.0f;
 
         private HUDState _mState = HUDState.Playing;
 
@@ -100,6 +101,12 @@ namespace RunLittleChuckNorris.GameComponents
         {
             get { return _mScore; }
             set { _mScore = Math.Max(value, 0.0f); }
+        }
+
+        public float HighScore
+        {
+            get { return _mHighScore; }
+            set { _mHighScore = Math.Max(value, _mHighScore); }
         }
 
         public HUDState State

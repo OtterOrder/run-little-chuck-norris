@@ -76,6 +76,15 @@ namespace RunLittleChuckNorris
 
             TextParams TxtParams;
 
+                // Game Start
+            TxtParams = new TextParams();
+            TxtParams.FontName = "Fonts/HUDFontGameOver";
+            TxtParams.TextValue = "Press X to play";
+            TxtParams.Color = Color.Red;
+            TxtParams.Mode = Text.TextMode.Center;
+            TxtParams.Position = new Vector2(0.0f, 20.0f);
+            ParamsArray[(int)HUD.HUDState.GameStart].ParamsList.Add(TxtParams);
+
                 // Score
             TxtParams = new TextParams();
             TxtParams.FontName = "Fonts/HUDFont";
@@ -102,9 +111,28 @@ namespace RunLittleChuckNorris
             TxtParams.Position = new Vector2(0.0f, 80.0f);
             ParamsArray[(int)HUD.HUDState.GameOver].ParamsList.Add(TxtParams);
 
+            TxtParams = new TextParams();
+            TxtParams.FontName = "Fonts/HUDFontGameOver";
+            TxtParams.TextValue = "Your Highest Score : /HighScore";
+            TxtParams.Color = Color.Red;
+            TxtParams.Mode = Text.TextMode.Center;
+            TxtParams.Position = new Vector2(0.0f, 100.0f);
+            ParamsArray[(int)HUD.HUDState.GameOver].ParamsList.Add(TxtParams);
+
+            TxtParams = new TextParams();
+            TxtParams.FontName = "Fonts/HUDFontGameOver";
+            TxtParams.TextValue = "Press X to replay";
+            TxtParams.Color = Color.Red;
+            TxtParams.Mode = Text.TextMode.Center;
+            TxtParams.Position = new Vector2(0.0f, 300.0f);
+            ParamsArray[(int)HUD.HUDState.GameOver].ParamsList.Add(TxtParams);
+
             _mHUD = new HUD(this, ParamsArray);
 
             base.Initialize();
+
+            // need to be done only when the hud is initialized
+            _mHUD.State = HUD.HUDState.GameStart;
         }
 
         /// <summary>
@@ -142,6 +170,7 @@ namespace RunLittleChuckNorris
             {
                 //_levelManager.Player.Start();
                 _mIsGamePaused = false;
+                _mHUD.State = HUD.HUDState.Playing;
             }
 
 
@@ -178,7 +207,10 @@ namespace RunLittleChuckNorris
             // compare the current score to the previous best one and keep the best...
             _levelManager.Player.BestDistance = Math.Max(_levelManager.Player.BestDistance, _levelManager.Player.DistanceParcourue);
 
+            _mHUD.HighScore = _levelManager.Player.BestDistance;
+
             // display the HUD
+            _mHUD.State = HUD.HUDState.GameOver;
 
         }
 
