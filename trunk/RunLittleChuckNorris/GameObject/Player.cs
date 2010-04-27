@@ -28,7 +28,7 @@ namespace RunLittleChuckNorris.GameObject
             this.Sprite.Loop = true;
             m_speed = 5.0f;
             X = 20.0f;
-            Y = 500.0f;
+            Y = 20.0f;
         }
 
         public override void Update(GameTime gameTime)
