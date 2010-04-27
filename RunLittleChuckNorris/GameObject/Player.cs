@@ -49,7 +49,7 @@ namespace RunLittleChuckNorris.GameObject
 
         public void Init()
         {
-            m_speed = 0.5f;
+            m_speed = 10.0f;
             X = 20.0f;
             Y = 490.0f;
             isJumping = false;
