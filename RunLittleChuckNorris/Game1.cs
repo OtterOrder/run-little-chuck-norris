@@ -23,6 +23,7 @@ namespace RunLittleChuckNorris
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        LevelManager _levelManager;
 
         public const int _mBackBufferWidth = 1280;
         public const int _mBackBufferHeight = 720;
@@ -35,7 +36,9 @@ namespace RunLittleChuckNorris
             graphics.PreferredBackBufferWidth = _mBackBufferWidth;
             graphics.PreferredBackBufferHeight = _mBackBufferHeight;
             Content.RootDirectory = "Content";
-            Components.Add(new GameComponents.LevelManager(this));
+
+            _levelManager = new GameComponents.LevelManager(this);
+            Components.Add(_levelManager);
         }
 
         /// <summary>
@@ -113,7 +116,7 @@ namespace RunLittleChuckNorris
         #region IGameOver
         public void GameOver()
         {
-            // bla bla
+            
         }
         #endregion
     }
