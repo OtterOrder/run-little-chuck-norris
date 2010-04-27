@@ -54,6 +54,7 @@ namespace RunLittleChuckNorris
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Sprite.SprBatch = spriteBatch;
 
             // TODO: use this.Content to load your game content here
         }
@@ -93,7 +94,7 @@ namespace RunLittleChuckNorris
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();        ////.
-            _mSpr.Draw(spriteBatch);    ////.
+            _mSpr.Draw();               ////.
             spriteBatch.End();          ////.
 
             // TODO: Add your drawing code here
