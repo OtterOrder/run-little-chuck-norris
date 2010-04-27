@@ -175,8 +175,11 @@ namespace RunLittleChuckNorris
 
             base.Update(gameTime);
 
-            // update the HUD score
-            _mHUD.Score = _levelManager.Player.DistanceParcourue;
+            if (!_mIsGamePaused)
+            {
+                // update the HUD score
+                _mHUD.Score = _levelManager.Player.DistanceParcourue;
+            }
         }
 
         /// <summary>
@@ -200,16 +203,19 @@ namespace RunLittleChuckNorris
 
         public void GameOver()
         {
-            _levelManager.CreateInitLevel();
+            
             _mIsGamePaused = true;
 
             // compare the current score to the previous best one and keep the best...
             _levelManager.Player.BestDistance = Math.Max(_levelManager.Player.BestDistance, _levelManager.Player.DistanceParcourue);
 
+            _mHUD.Score = _levelManager.Player.DistanceParcourue;
             _mHUD.HighScore = _levelManager.Player.BestDistance;
 
             // display the HUD
             _mHUD.State = HUD.HUDState.GameOver;
+
+            _levelManager.CreateInitLevel();
 
         }
 
