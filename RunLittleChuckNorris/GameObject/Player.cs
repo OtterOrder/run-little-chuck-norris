@@ -53,12 +53,14 @@ namespace RunLittleChuckNorris.GameObject
             maxJumpHeight = 300.0f;
             m_bestDistance = 0;
             speedyMax = 30.0f;
+            Sprite.Play = false;
 
             m_worldProvider = (Helper.IWorldProvider)game.Services.GetService(typeof(Helper.IWorldProvider));
         }
 
         public void Init()
         {
+            Sprite.Play = false;
             m_speed = 10.0f;
             X = 20.0f;
             Y = 500.0f;
@@ -74,6 +76,8 @@ namespace RunLittleChuckNorris.GameObject
 
             if (m_worldProvider.IsFreezed)
                 return;
+
+            Sprite.Play = true;
 
             float speedx = m_speed;
 
