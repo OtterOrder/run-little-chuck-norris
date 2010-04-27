@@ -168,7 +168,6 @@ namespace RunLittleChuckNorris
             // when we are in pause (the game just started or after game over
             if (_mIsGamePaused && Keyboard.GetState().IsKeyDown(Keys.X))
             {
-                //_levelManager.Player.Start();
                 _mIsGamePaused = false;
                 _mHUD.State = HUD.HUDState.Playing;
             }
@@ -226,6 +225,11 @@ namespace RunLittleChuckNorris
         public List<GameObject.Plateforme> Plateformes
         {
             get { return _mPlateformes; }
+        }
+
+        public bool IsFreezed
+        {
+            get { return _mIsGamePaused; }
         }
 
         #endregion

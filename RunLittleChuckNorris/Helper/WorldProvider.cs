@@ -11,6 +11,7 @@ namespace RunLittleChuckNorris.Helper
 
         List<GameObject.Obstacle> Obstacles { get; }
         List<GameObject.Plateforme> Plateformes { get; }
+        bool IsFreezed { get; }
 
         #endregion
     }

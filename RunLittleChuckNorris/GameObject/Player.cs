@@ -26,6 +26,7 @@ namespace RunLittleChuckNorris.GameObject
         private float maxJumpHeight;
         private bool isJumping;
         private float m_bestDistance;
+        private Helper.IWorldProvider m_worldProvider;
 
         public Player(Game game, String spriteName)
             : base(game)
@@ -42,25 +43,25 @@ namespace RunLittleChuckNorris.GameObject
             minJumpHeight = 150.0f;
             maxJumpHeight = 300.0f;
             m_bestDistance = 0;
+
+            m_worldProvider = (Helper.IWorldProvider)game.Services.GetService(typeof(Helper.IWorldProvider));
         }
 
         public void Init()
         {
-            m_speed = 0.0f;
+            m_speed = 0.5f;
             X = 20.0f;
             Y = 490.0f;
             isJumping = false;
             currentJumpHeight = 0.0f;
         }
 
-        public void Start()
-        {
-            m_speed = 5.0f;
-        }
-
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (m_worldProvider.IsFreezed)
+                return;
 
             float speedx = m_speed;
             float speedy = 0;
