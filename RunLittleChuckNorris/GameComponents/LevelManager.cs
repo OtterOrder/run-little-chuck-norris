@@ -116,5 +116,14 @@ namespace RunLittleChuckNorris.GameComponents
         {
             return _mDefaultCam;
         }
+
+        #region Properties
+
+        public Player Player
+        {
+            get { return _mPlayer; }
+        }
+
+        #endregion
     }
 }
