@@ -22,14 +22,13 @@ namespace RunLittleChuckNorris.GameObject
 
         // Private members
         Helper.Sprite m_sprite;
-        int m_x;
-        int m_y;
+        float m_x;
+        float m_y;
 
 
         public GameObject(Game game)
             : base(game)
         {
-            m_sprite = new Helper.Sprite();
             m_x = 0;
             m_y = 0;
         }
@@ -54,13 +53,13 @@ namespace RunLittleChuckNorris.GameObject
 
         #region Properties
 
-        public int X
+        public float X
         {
             get { return m_x; }
             set { m_x = value; }
         }
 
-        public int Y
+        public float Y
         {
             get { return m_y; }
             set { m_y = value; }
@@ -69,6 +68,7 @@ namespace RunLittleChuckNorris.GameObject
         public Helper.Sprite Sprite
         {
             get { return m_sprite; }
+            set { m_sprite = value; }
         }
 
         #endregion
