@@ -29,7 +29,7 @@ namespace RunLittleChuckNorris.GameObject
             Sprite.Loop = false;
             Sprite.Origin = new Vector2(Sprite.Width / 2, Sprite.Height);
 
-            _mFireSpeed = -5.0f;
+            _mFireSpeed = -0.4f;
 
             _mWorldProvider = (Helper.IWorldProvider)game.Services.GetService(typeof(Helper.IWorldProvider));
 
@@ -57,7 +57,7 @@ namespace RunLittleChuckNorris.GameObject
             if (_mWorldProvider.IsFreezed)
                 return;
 
-            X += _mFireSpeed;
+            X += _mFireSpeed * gameTime.ElapsedGameTime.Milliseconds;
 
         }
     }
