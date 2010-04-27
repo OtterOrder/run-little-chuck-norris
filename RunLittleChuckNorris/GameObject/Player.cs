@@ -28,6 +28,10 @@ namespace RunLittleChuckNorris.GameObject
         private float m_bestDistance;
         private Helper.IWorldProvider m_worldProvider;
 
+        private float gravity;
+        private float speedy;
+        private float speedyMax;
+
         public Player(Game game, String spriteName)
             : base(game)
         {
@@ -43,6 +47,7 @@ namespace RunLittleChuckNorris.GameObject
             minJumpHeight = 150.0f;
             maxJumpHeight = 300.0f;
             m_bestDistance = 0;
+            speedyMax = 20.0f;
 
             m_worldProvider = (Helper.IWorldProvider)game.Services.GetService(typeof(Helper.IWorldProvider));
         }
@@ -54,6 +59,8 @@ namespace RunLittleChuckNorris.GameObject
             Y = 490.0f;
             isJumping = false;
             currentJumpHeight = 0.0f;
+            speedy = speedyMax;
+            gravity = 1.0f;
         }
 
         public override void Update(GameTime gameTime)
@@ -64,42 +71,25 @@ namespace RunLittleChuckNorris.GameObject
                 return;
 
             float speedx = m_speed;
-            float speedy = 0;
 
-
-            // is jumping ?
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))// && currentJumpHeight < maxJumpHeight)
+            speedy += gravity;
+            if (speedy < -speedyMax)
             {
-                // modify speedy
-               // currentJumpHeight += speedy;
-                isJumping = true;
-                currentJumpHeight = 0;
+                speedy = -speedyMax;
+            }
+            if (speedy > speedyMax)
+            {
+                speedy = speedyMax;
             }
 
-            if (isJumping && currentJumpHeight < minJumpHeight)
-            {
-                currentJumpHeight += 15;
-            }
 
-            if (currentJumpHeight >= maxJumpHeight || currentJumpHeight >= minJumpHeight && !Keyboard.GetState().IsKeyDown(Keys.Space))
-            {
-                isJumping = false;
-                currentJumpHeight = 0;
-            }
+            // apply change on player position
+            X += speedx;
+            Y += speedy;
 
             Plateforme p;
             // is colliding Plateforme
             p = (Plateforme)collisionManager.CollidePlatform(this);
-
-            if (!isJumping)
-            {
-                speedy = 15.0f;
-            }
-            else
-            {
-                speedy = -15.0f;
-            }
 
             if (p != null)
             {
@@ -123,10 +113,11 @@ namespace RunLittleChuckNorris.GameObject
                         //over ?
                         if (X + Sprite.Width / 2 >= p.X && Y <= p.Y + p.Height)
                         {
-                            if (!isJumping)
+                            Y = p.Y;
+                            //jump
+                            if (Keyboard.GetState().IsKeyDown(Keys.Space))
                             {
-                                speedy = 0.0f;
-                                Y = p.Y+1;
+                                speedy = -15.0f;
                             }
                             //currentJumpHeight = 0.0f;
                            // isJumping = false;
@@ -142,11 +133,7 @@ namespace RunLittleChuckNorris.GameObject
                 // dead
                 ((Helper.IGameOver)Game.Services.GetService(typeof(Helper.IGameOver))).GameOver();
             }
-            
 
-            // apply change on player position
-            X += speedx;
-            Y += speedy;
         }
 
         #region Properties
