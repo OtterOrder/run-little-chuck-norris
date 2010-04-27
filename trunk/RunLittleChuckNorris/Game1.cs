@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using RunLittleChuckNorris.Helper;
 using RunLittleChuckNorris.GameObject;
+using RunLittleChuckNorris.GameComponents;
 
 namespace RunLittleChuckNorris
 {
@@ -28,6 +29,7 @@ namespace RunLittleChuckNorris
 
         private Camera   _mDefaultCam;
         private Player   _mPlayer;
+        private HUD      _mHUD;
 
         public Game1()
         {
@@ -49,12 +51,16 @@ namespace RunLittleChuckNorris
             // set the spritebatch to the sprite
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Sprite.SprBatch = spriteBatch;
+            Text.SprBatch = spriteBatch;
 
             _mDefaultCam = new Camera();
             _mDefaultCam.SetViewportParam(0, 0, 1.0f, 1.0f);
             _mDefaultCam.Position = new Vector2(0.0f, 0.0f);
 
             _mPlayer = new Player(this, "Player");
+
+            _mHUD = new HUD(this, _mDefaultCam);
+            _mHUD.Position = new Vector2(-graphics.PreferredBackBufferWidth / 2.0f, -graphics.PreferredBackBufferHeight / 2.0f);
 
             base.Initialize();
         }

@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+using RunLittleChuckNorris.Helper;
 
 
 namespace RunLittleChuckNorris.GameComponents
@@ -17,12 +18,20 @@ namespace RunLittleChuckNorris.GameComponents
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class HUD : Microsoft.Xna.Framework.GameComponent
+    public class HUD : Microsoft.Xna.Framework.DrawableGameComponent
     {
-        public HUD(Game game)
+        public Vector2 Position = new Vector2(0.0f, 0.0f);
+        private Camera _mCamera = null;
+        private float _mScore = 0.0f;
+        private Text _mText = null;
+
+        public HUD(Game game, Camera _Camera)
             : base(game)
         {
-            // TODO: Construct any child components here
+            _mCamera = _Camera;
+            _mText = new Text("Fonts/HUDFont", game.Content);
+
+            game.Components.Add(this);
         }
 
         /// <summary>
@@ -31,9 +40,14 @@ namespace RunLittleChuckNorris.GameComponents
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
-
+            _mScore = 0.0f;
             base.Initialize();
+        }
+
+        public float Score
+        {
+            get { return _mScore; }
+            set { _mScore = Math.Max(value, 0.0f); }
         }
 
         /// <summary>
@@ -42,9 +56,18 @@ namespace RunLittleChuckNorris.GameComponents
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
-
             base.Update(gameTime);
+
+            _mText.Position = _mCamera.Position + Position;
+            _mText.TextString = "Score = " + _mScore.ToString();
+            _mText.Update();
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+
+            _mText.Draw(); 
         }
     }
 }
