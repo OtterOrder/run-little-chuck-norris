@@ -32,6 +32,11 @@ namespace RunLittleChuckNorris.GameObject
         private float speedy;
         private float speedyMax;
 
+        private SoundEffect m_jumpSound;
+        private SoundEffect m_runSound;
+        private SoundEffectInstance m_runSoundInstance;
+        private SoundEffect m_dieSound;
+
         public Player(Game game, String spriteName)
             : base(game)
         {
@@ -117,7 +122,27 @@ namespace RunLittleChuckNorris.GameObject
                             //jump
                             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                             {
+                                if (!isJumping)
+                                {
+                                    m_runSoundInstance.Pause();
+                                    m_jumpSound.Play();
+                                    isJumping = true;
+
+                                }
                                 speedy = -speedyMax;
+                            }
+                            else
+                            {
+                                isJumping = false;
+                                if (m_runSoundInstance.State == SoundState.Paused)
+                                {
+                                    m_runSoundInstance.Resume();
+                                }
+                                else if (m_runSoundInstance.State == SoundState.Stopped)
+                                {
+                                    m_runSoundInstance.IsLooped = true;
+                                    m_runSoundInstance.Play();
+                                }
                             }
                             //currentJumpHeight = 0.0f;
                            // isJumping = false;
@@ -130,10 +155,23 @@ namespace RunLittleChuckNorris.GameObject
             // is colliding Obstacle ?
             if (collisionManager.CollideObstacle(this) != null || Y > 1000)
             {
+                m_runSoundInstance.Pause();
+                m_dieSound.Play();
+
                 // dead
                 ((Helper.IGameOver)Game.Services.GetService(typeof(Helper.IGameOver))).GameOver();
             }
 
+        }
+
+        protected override void LoadContent()
+        {
+            m_jumpSound = Game.Content.Load<SoundEffect>("Sound/jump");
+            m_runSound = Game.Content.Load<SoundEffect>("Sound/run");
+            m_runSoundInstance = m_runSound.CreateInstance();
+            m_dieSound = Game.Content.Load<SoundEffect>("Sound/die");
+
+            base.LoadContent();
         }
 
         #region Properties
