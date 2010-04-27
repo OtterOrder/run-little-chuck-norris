@@ -17,34 +17,37 @@ namespace RunLittleChuckNorris.GameObject
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Player : Microsoft.Xna.Framework.GameComponent
+    public class Player : GameObject
     {
-        public Player(Game game)
+        private float m_speed;
+        private float m_distance;
+
+        public Player(Game game, String spriteName)
             : base(game)
         {
-            // TODO: Construct any child components here
+            this.Sprite = new Helper.Sprite("Player", this.Game.Content, 4, 4);
+            this.Sprite.Loop = true;
+            m_speed = 5.0f;
+            m_distance = 0.0f;
+            X = 20.0f;
+            Y = 500.0f;
         }
 
-        /// <summary>
-        /// Allows the game component to perform any initialization it needs to before starting
-        /// to run.  This is where it can query for any required services and load content.
-        /// </summary>
-        public override void Initialize()
+        #region Properties
+
+        public float Speed
         {
-            // TODO: Add your initialization code here
-
-            base.Initialize();
+            get { return m_speed; }
+            set { m_speed = value; }
         }
 
-        /// <summary>
-        /// Allows the game component to update itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Update(GameTime gameTime)
+        public float DistanceParcourue
         {
-            // TODO: Add your update code here
-
-            base.Update(gameTime);
+            get { return m_distance; }
+            set { m_distance = value; }
         }
+
+        #endregion
+
     }
 }
