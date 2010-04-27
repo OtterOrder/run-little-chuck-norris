@@ -22,8 +22,6 @@ namespace RunLittleChuckNorris
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private Sprite _mSpr = null;
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -53,6 +51,7 @@ namespace RunLittleChuckNorris
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Sprite.SprBatch = spriteBatch;
         }
 
         /// <summary>
@@ -61,6 +60,7 @@ namespace RunLittleChuckNorris
         /// </summary>
         protected override void UnloadContent()
         {
+            Sprite.SprBatch = null;
         }
 
         /// <summary>
