@@ -27,7 +27,6 @@ namespace RunLittleChuckNorris.GameObject
             this.Sprite = new Helper.Sprite("Player", this.Game.Content, 4, 4);
             this.Sprite.Loop = true;
             m_speed = 5.0f;
-            m_distance = 0.0f;
             X = 20.0f;
             Y = 500.0f;
         }
