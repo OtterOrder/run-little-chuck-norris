@@ -38,10 +38,9 @@ namespace RunLittleChuckNorris
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
-            _mSpr = new Sprite("Graphics/Sprites/Player", Content, 4, 10.0f); ////.
-            _mSpr.Loop = true;
+            // set the spritebatch to the sprite
+            Sprite.SprBatch = spriteBatch;
+            
 
             base.Initialize();
         }
@@ -54,9 +53,6 @@ namespace RunLittleChuckNorris
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Sprite.SprBatch = spriteBatch;
-
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -65,7 +61,6 @@ namespace RunLittleChuckNorris
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -79,9 +74,6 @@ namespace RunLittleChuckNorris
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
-            _mSpr.Update((float)gameTime.ElapsedGameTime.TotalMilliseconds);
-
             base.Update(gameTime);
         }
 
@@ -93,13 +85,11 @@ namespace RunLittleChuckNorris
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();        ////.
-            _mSpr.Draw();               ////.
-            spriteBatch.End();          ////.
-
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
 
             base.Draw(gameTime);
+
+            spriteBatch.End();
         }
     }
 }
