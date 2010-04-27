@@ -22,9 +22,14 @@ namespace RunLittleChuckNorris
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        public const int _mBackBufferWidth = 1280;
+        public const int _mBackBufferHeight = 720;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = _mBackBufferWidth;
+            graphics.PreferredBackBufferHeight = _mBackBufferHeight;
             Content.RootDirectory = "Content";
         }
 
