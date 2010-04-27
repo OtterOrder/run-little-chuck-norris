@@ -65,15 +65,14 @@ namespace RunLittleChuckNorris.Helper
 
         public void Update(float _Dt)
         {
-            mTransform = Matrix.Identity *
-                          Matrix.CreateTranslation(-_mPosition.X, -_mPosition.Y, 0);
+            _mPosition.X += (int)((mFocus.X - _mPosition.X) * mMoveSpeed * _Dt);
+            _mPosition.Y += (int)((mFocus.Y - _mPosition.Y) * mMoveSpeed * _Dt);
+
+
+            mTransform = Matrix.Identity * Matrix.CreateTranslation(-_mPosition.X, -_mPosition.Y, 0);
 
             if (mFocus.X != 0 && mFocus.Y != 0)
                 mTransform *= Matrix.CreateTranslation(_mScreenCenter.X, _mScreenCenter.Y, 0);
-
-
-            _mPosition.X += (int)((mFocus.X - _mPosition.X) * mMoveSpeed * _Dt);
-            _mPosition.Y += (int)((mFocus.Y - _mPosition.Y) * mMoveSpeed * _Dt);
         }
 
         public void SetCamera(GraphicsDeviceManager _GraphicsManager)
