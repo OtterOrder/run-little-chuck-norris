@@ -30,7 +30,7 @@ namespace RunLittleChuckNorris.Helper
         public GameObject.Plateforme CollidePlatform(GameObject.GameObject obj)
         {
             // Rectangle du l'objet dont on veut savoir la collision
-            Rectangle baseRectangle = new Rectangle((int)obj.X - (int)obj.Sprite.Origin.X, (int)obj.Y - (int)obj.Sprite.Origin.Y, obj.Sprite.Width, obj.Sprite.Width);
+            Rectangle baseRectangle = new Rectangle((int)obj.X - (int)obj.Sprite.Origin.X, (int)obj.Y - (int)obj.Sprite.Origin.Y, obj.Sprite.Width, obj.Sprite.Height);
 
             foreach (Plateforme obs in _mPlatformList)
             {
@@ -46,14 +46,14 @@ namespace RunLittleChuckNorris.Helper
             return null;
         }
 
-        public GameObject.Obstacle CollideEnnemy(GameObject.GameObject obj)
+        public GameObject.Obstacle CollideObstacle(GameObject.GameObject obj)
         {
             // Rectangle du l'objet dont on veut savoir la collision
-            Rectangle baseRectangle = new Rectangle((int)obj.X, (int)obj.Y, obj.Sprite.Width, obj.Sprite.Width);
+            Rectangle baseRectangle = new Rectangle((int)obj.X - (int)obj.Sprite.Origin.X, (int)obj.Y - (int)obj.Sprite.Origin.Y, obj.Sprite.Width, obj.Sprite.Height);
 
             foreach (Obstacle obs in _mObstacleList)
             {
-                Rectangle blockRectangle = new Rectangle((int)obs.X, (int)obs.Y, obs.Sprite.Width, obs.Sprite.Height);
+                Rectangle blockRectangle = new Rectangle((int)obs.X - (int)obs.Sprite.Origin.X, (int)obs.Y - (int)obs.Sprite.Origin.Y, obs.Sprite.Width, obs.Sprite.Height);
 
                 // Verifie la collision
                 if (baseRectangle.Intersects(blockRectangle))
