@@ -17,7 +17,7 @@ namespace RunLittleChuckNorris.GameObject
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Caisse : GameObject
+    public class Caisse : Obstacle
     {
     
         public Caisse(Game game)
