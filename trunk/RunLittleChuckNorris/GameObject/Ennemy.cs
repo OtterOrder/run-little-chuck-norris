@@ -52,12 +52,6 @@ namespace RunLittleChuckNorris.GameObject
             set { m_fireRate = value; }
         }
 
-        public float TimeSinceLastShot
-        {
-            get { return m_timeSinceLastShot; }
-            set { m_timeSinceLastShot = value; }
-        }
-
         #endregion
     }
 }
