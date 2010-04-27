@@ -106,7 +106,7 @@ namespace RunLittleChuckNorris.GameComponents
             GameObject.Plateforme p = new GameObject.Plateforme(Game);
             p.X = 0;
             p.Y = 500;
-            p.Width = 3000.0f;
+            p.Width = 2300.0f;
             p.Height = 50.0f;
 
             obj = new GameObject.Ennemy(Game);
@@ -121,11 +121,11 @@ namespace RunLittleChuckNorris.GameComponents
 
         private int CreateNextPiece(int startX, int startY)
         {
-            int maxLongCaisse = 200;
-            int maxLongEnnemy = 300;
+            int maxLongCaisse = 300;
+            int maxLongEnnemy = 400;
             GameObject.GameObject obj;
 
-            int nbdiv = rand.Next(3, 5);
+            int nbdiv = rand.Next(2, 4);
             int hauteur = startY;
 
             int longmoy = 1000 / nbdiv;
@@ -136,13 +136,13 @@ namespace RunLittleChuckNorris.GameComponents
                 GameObject.Plateforme p = new GameObject.Plateforme(Game);
                 p.X = startX;
 
-                int offset = rand.Next(20, 60);
+                int offset = rand.Next(40, 80);
                 int sense = rand.Next(-1, 1);
                 if (sense == 0) sense = 1;
                 hauteur = hauteur + offset * sense;
                 p.Y = hauteur;
 
-                offset = rand.Next(50, 100);
+                offset = rand.Next(30, 70);
                 sense = rand.Next(-1, 1);
                 if (sense == 0) sense = 1;
                 int longueur = longmoy + offset * sense;
@@ -167,16 +167,12 @@ namespace RunLittleChuckNorris.GameComponents
                 {
                     probEnnemy = 0;
                     obj = new GameObject.Ennemy(Game);
-                    int place = rand.Next(0, 2);
-                    if (place == 0)
-                        obj.X = startX + (longueur - 30);
-                    else
-                        obj.X = startX + (longueur / 5);
+                    obj.X = startX + (longueur - 30);
                     obj.Y = hauteur;
                 }
 
                 startX += (longueur + rand.Next(50, 100));
-                probCaisse += rand.Next(5, 30);
+                probCaisse += rand.Next(5, 40);
                 probEnnemy += rand.Next(5, 20);
             }
 
