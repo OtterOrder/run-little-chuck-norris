@@ -107,7 +107,7 @@ namespace RunLittleChuckNorris
             TxtParams.TextValue = "Game Over";
             TxtParams.Color = Color.Red;
             TxtParams.Mode = Text.TextMode.Center;
-            TxtParams.Position = new Vector2(0.0f, 20.0f);
+            TxtParams.Position = new Vector2(0.0f, -200.0f);
             ParamsArray[(int)HUD.HUDState.GameOver].ParamsList.Add(TxtParams);
 
             TxtParams = new TextParams();
