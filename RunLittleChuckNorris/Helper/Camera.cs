@@ -70,9 +70,7 @@ namespace RunLittleChuckNorris.Helper
 
 
             mTransform = Matrix.Identity * Matrix.CreateTranslation(-_mPosition.X, -_mPosition.Y, 0);
-
-            if (mFocus.X != 0 && mFocus.Y != 0)
-                mTransform *= Matrix.CreateTranslation(_mScreenCenter.X, _mScreenCenter.Y, 0);
+            mTransform *= Matrix.CreateTranslation(_mScreenCenter.X, _mScreenCenter.Y, 0);
         }
 
         public void SetCamera(GraphicsDeviceManager _GraphicsManager)
