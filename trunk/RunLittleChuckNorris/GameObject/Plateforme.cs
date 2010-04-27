@@ -60,7 +60,7 @@ namespace RunLittleChuckNorris.GameObject
             set 
             { 
                 m_height = value;
-                Sprite.Scale = Vector2(m_width, m_height);
+                Sprite.Scale = new Vector2(m_width, m_height);
             }
         }
 
@@ -70,7 +70,7 @@ namespace RunLittleChuckNorris.GameObject
             set 
             { 
                 m_width = value;
-                Sprite.Scale = Vector2(m_width, m_height);
+                Sprite.Scale = new Vector2(m_width, m_height);
             }
         }
 
