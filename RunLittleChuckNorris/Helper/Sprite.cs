@@ -8,6 +8,8 @@ namespace RunLittleChuckNorris.Helper
 {
     public class Sprite
     {
+        public static SpriteBatch SprBatch = null;
+
         //
         private Texture2D       _mSpr = null;
         private int             _mWidth;
@@ -210,11 +212,11 @@ namespace RunLittleChuckNorris.Helper
             }
         }
 
-        public void Draw(SpriteBatch _SprBatch)
+        public void Draw()
         {
             Rectangle Rect = new Rectangle(_mCurrentFrame * _mWidth, 0, _mWidth, Height);
 
-            _SprBatch.Draw(_mSpr, Position, Rect, Color.White, 0, Origin, Scale, Flip, _mDepth);
+            SprBatch.Draw(_mSpr, Position, Rect, Color.White, 0, Origin, Scale, Flip, _mDepth);
         }
     }
 }
