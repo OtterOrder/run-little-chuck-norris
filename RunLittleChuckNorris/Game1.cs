@@ -25,6 +25,8 @@ namespace RunLittleChuckNorris
         public const int _mBackBufferWidth = 1280;
         public const int _mBackBufferHeight = 720;
 
+        private Camera   _mDefaultCam;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -44,6 +46,10 @@ namespace RunLittleChuckNorris
             // set the spritebatch to the sprite
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Sprite.SprBatch = spriteBatch;
+
+            _mDefaultCam = new Camera();
+            _mDefaultCam.SetViewportParam(0, 0, 1.0f, 1.0f);
+            _mDefaultCam.Position = new Vector2(0.0f, 0.0f);
 
             base.Initialize();
         }
@@ -88,7 +94,9 @@ namespace RunLittleChuckNorris
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            _mDefaultCam.SetCamera(graphics);
+
+            spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, _mDefaultCam.mTransform);
 
             base.Draw(gameTime);
 
