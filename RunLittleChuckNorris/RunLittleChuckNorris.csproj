@@ -93,6 +93,7 @@
     <Compile Include="GameObject\Obstacle.cs" />
     <Compile Include="GameObject\Plateforme.cs" />
     <Compile Include="GameObject\Player.cs" />
+    <Compile Include="Helper\Camera.cs" />
     <Compile Include="Helper\CollisionManager.cs" />
     <Compile Include="Helper\Sprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
