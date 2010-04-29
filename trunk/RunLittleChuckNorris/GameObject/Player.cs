@@ -21,9 +21,6 @@ namespace RunLittleChuckNorris.GameObject
     {
         private float m_speed;
         private Helper.CollisionManager collisionManager;
-        private float currentJumpHeight;
-        private float minJumpHeight;
-        private float maxJumpHeight;
         private bool isJumping;
         private float m_bestDistance;
         private Helper.IWorldProvider m_worldProvider;
@@ -48,9 +45,6 @@ namespace RunLittleChuckNorris.GameObject
             X = 20.0f;
             Y = 0.0f;
             isJumping = false;
-            currentJumpHeight = 0.0f;
-            minJumpHeight = 150.0f;
-            maxJumpHeight = 300.0f;
             m_bestDistance = 0;
             speedyMax = 25.0f;
             Sprite.Play = false;
@@ -65,7 +59,6 @@ namespace RunLittleChuckNorris.GameObject
             X = 20.0f;
             Y = 500.0f;
             isJumping = false;
-            currentJumpHeight = 0.0f;
             speedy = speedyMax;
             gravity = 1.0f;
         }
