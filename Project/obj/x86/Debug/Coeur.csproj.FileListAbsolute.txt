@@ -1,0 +1,7 @@
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\bin\x86\Debug\Resources\Graphics\Backgrounds\Test_bg.xnb
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\bin\x86\Debug\Coeur.exe
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\bin\x86\Debug\Coeur.pdb
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\obj\x86\Debug\Coeur.exe
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\obj\x86\Debug\Coeur.pdb
