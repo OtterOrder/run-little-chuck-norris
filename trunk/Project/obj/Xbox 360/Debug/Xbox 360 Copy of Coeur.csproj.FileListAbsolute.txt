@@ -1,0 +1,7 @@
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\obj\Xbox 360\Debug\ResolveAssemblyReference.cache
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\obj\Xbox 360\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\bin\Xbox 360\Debug\Resources\Graphics\Backgrounds\Test_bg.xnb
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\bin\Xbox 360\Debug\Wave me.exe
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\bin\Xbox 360\Debug\Wave me.pdb
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\obj\Xbox 360\Debug\Wave me.exe
+C:\Users\fbrulhart\Documents\Visual Studio 2008\Projects\coeur\Project\obj\Xbox 360\Debug\Wave me.pdb

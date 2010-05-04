@@ -1,0 +1,1 @@
+Resources\Graphics\Backgrounds\Test_bg.xnb
